@@ -1,0 +1,10 @@
+{
+    "name":"mimic_cn_try",
+    "data_path":"mimic_cn_try.json",
+    "test_path":"mimic_cn_test.json",
+    "vocabulary":[
+        "肺不张","心脏肥大","合并","水肿","放大","心脏纵隔","断裂","肺","病变","不透明","积液","胸膜","肺炎","气胸","支持","设备"
+    ],
+    "user_dict":"data/dataset_conf/mimic_cn_userdict.txt",
+    "lang":"CN"
+}
