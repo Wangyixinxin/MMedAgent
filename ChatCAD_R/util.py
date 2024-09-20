@@ -5,14 +5,20 @@ def initialize_chatbot(api_key=None):
         api_key = input("Please enter your OPEN-AI API key: ")
     try:
         chatbot_bindings = gpt_bot(engine="gpt-4o", api_key=api_key)
+        print("Chatbot initialized successfully")
         return chatbot_bindings
     except Exception as e:
         print("Failed to initialize openai chatbot: ", e)
         return None
 
-def handle_text_input(chatbot_bindings, input_text, message_history):
-    response, check, query, abnormality_check, [raw_topic, cos_sim], knowledge = chatbot_bindings.chat(input_text, str(message_history))
-    return response, check, query, abnormality_check, [raw_topic, cos_sim], knowledge
+def handle_text_input(chatbot_bindings, input_text, message_history, check=False):
+    # yes this function is trivial and unnecessary but it may help in debugging
+    if not check:
+        response, [raw_topic, cos_sim], knowledge = chatbot_bindings.chat(input_text, str(message_history))
+        return response, [raw_topic, cos_sim], knowledge
+    else:
+        response, check, query, abnormality_check, [raw_topic, cos_sim], knowledge = chatbot_bindings.chat(input_text, str(message_history), abnormality_check=True)
+        return response, check, query, abnormality_check, [raw_topic, cos_sim], knowledge
 
 
 def concat_history(message_history:list)->str:
@@ -43,5 +49,5 @@ def RAG_casual(question, api_key=None):
     chatbot = initialize_chatbot(api_key)
     message_history = [{"role": "user", "content": question}]
     ref_record=concat_history(message_history)
-    response, knowledge = chatbot.chat("", ref_record)
+    response, [raw_topic, cos_sim], knowledge = chatbot.chat("", ref_record)
     return response

@@ -252,16 +252,11 @@ def query_range(model, query: str,k:int=3,bar=0.6):
     sift_topK=sift_topK.reshape(sift_topK.shape[0],)
     ret, raw_ret = [], []
     if len(sift_topK)==0:
-        return ret
-        # return ret, [None,None]
-    # for indices in top_k_indices:
+        return ret, [None,None]
     for indices in sift_topK:
         key=list(emb_d.keys())[indices]
         ret.append(key)
     for indices in top_k_indices:
         key=list(emb_d.keys())[indices]
         raw_ret.append(key)
-        # print(msd[key])
-    # print(ret)
-    return ret
-    # return ret, [raw_ret, cos_similarities[top_k_indices]]
+    return ret, [raw_ret, cos_similarities[top_k_indices]]
