@@ -5,7 +5,7 @@ tasks across different modalities seamlessly.
 
 [[Paper, EMNLP 2024 (Findings)](https://arxiv.org/abs/2407.02483)] [Demo]
 
-Binxu Li, Tiankai Yan, Yuanting Pan, Zhe Xu, Jie Luo, Ruiyang Ji, Shilong Liu, Haoyu Dong*, Zihao Lin*, Yixin Wang* 
+Binxu Li, Tiankai Yan, Yuanting Pan, Jie Luo, Ruiyang Ji, Jiayuan Ding, Zhe Xu, Shilong Liu, Haoyu Dong*, Zihao Lin*, Yixin Wang* 
 
 <div style="text-align: center;">
     <img src="imgs/mmedagent.jpg" alt="MMedAgent" style="width: 50%;"/>
