@@ -26,6 +26,20 @@ Generation (MRG), (6) retrieval augmented generation (RAG), and (7) VQA.
 | Medical report generation (MRG) | ChatCAD-G | <https://github.com/zhaozh10/ChatCAD> |
 | Retrieval augmented generation (RAG) | ChatCAD-R | <https://github.com/zhaozh10/ChatCAD> |
 
+| Task           | Tool                                     | Data Source                                                                                                                       | Imaging Modality                             |
+|----------------|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| VQA            | LLaVA-Med                    | PMC article<br>*60K-IM*                                                                                                | MRI, CT, X-ray, Histology, Gross            |
+| Classification | BiomedCLIP                       | PMC article<br>*60K-IM*                                                                                                         | MRI, CT, X-ray, Histology, Gross            |
+| Grounding      | Grounding DINO                    | WORD, etc.*<br>                                                                                                                 | MRI, CT, X-ray, Histology                   |
+| Segmentation with bounding-box prompts (Segmentation)    | MedSAM                            | WORD, etc.*                                                                                                                      | MRI, CT, X-ray, Histology, Gross            |
+| Segmentation with text prompts (G-Seg)        | Grounding DINO + MedSAM                  | WORD, etc.*                                                                                                                      | MRI, CT, X-ray, Histology                   |
+| Medical report generation (MRG)            | ChatCAD                           | MIMIC-CXR                                                                                                               | X-ray                                        |
+| Retrieval augmented generation (RAG)            | ChatCAD+                         | Merck Manual                                                                                                            | --                                           |
+
+---
+
+**Note**: ``--`` means that the RAG task only focuses on natural language without handling images. ``WORD, etc.*`` indicates various data sources including WORD, FLARE2021, BRATS, Montgomery County X-ray Set (MC), VinDr-CXR, and Cellseg.  
+
 
 ## Usage
 1. Clone this repo and navigate to xxx folder
