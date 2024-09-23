@@ -13,28 +13,16 @@ Binxu Li, Tiankai Yan, Yuanting Pan, Jie Luo, Ruiyang Ji, Jiayuan Ding, Zhe Xu, 
 </div>
 
 ## Current Tool lists
-(1) grounding, (2) segmentation with bounding-box prompts (Segmentation),
-(3) segmentation with text prompts (G-Seg), (4)
-medical imaging classification, (5) Medical Report
-Generation (MRG), (6) retrieval augmented generation (RAG), and (7) VQA.
-| task | tool name | link |
-| --- | --- | --- |
-| Detection | grounding dino (medical version) | <https://github.com/IDEA-Research/GroundingDINO> |
-| Segmentation with bounding-box prompts (Segmentation) | MedSAM | <https://github.com/bowang-lab/MedSAM> |
-| segmentation with text prompts (G-Seg) | grounding dino + MedSAM | <https://github.com/bowang-lab/MedSAM> |
-| Medical imaging classification | Biomedclip | <https://huggingface.co/microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224> |
-| Medical report generation (MRG) | ChatCAD-G | <https://github.com/zhaozh10/ChatCAD> |
-| Retrieval augmented generation (RAG) | ChatCAD-R | <https://github.com/zhaozh10/ChatCAD> |
 
 | Task           | Tool                                     | Data Source                                                                                                                       | Imaging Modality                             |
 |----------------|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| VQA            | LLaVA-Med                    | PMC article<br>*60K-IM*                                                                                                | MRI, CT, X-ray, Histology, Gross            |
-| Classification | BiomedCLIP                       | PMC article<br>*60K-IM*                                                                                                         | MRI, CT, X-ray, Histology, Gross            |
-| Grounding      | Grounding DINO                    | WORD, etc.*<br>                                                                                                                 | MRI, CT, X-ray, Histology                   |
-| Segmentation with bounding-box prompts (Segmentation)    | MedSAM                            | WORD, etc.*                                                                                                                      | MRI, CT, X-ray, Histology, Gross            |
-| Segmentation with text prompts (G-Seg)        | Grounding DINO + MedSAM                  | WORD, etc.*                                                                                                                      | MRI, CT, X-ray, Histology                   |
-| Medical report generation (MRG)            | ChatCAD                           | MIMIC-CXR                                                                                                               | X-ray                                        |
-| Retrieval augmented generation (RAG)            | ChatCAD+                         | Merck Manual                                                                                                            | --                                           |
+| VQA            | [LLaVA-Med](https://github.com/microsoft/LLaVA-Med/tree/main)                    | PMC article<br>*60K-IM*                                                                                                | MRI, CT, X-ray, Histology, Gross            |
+| Classification | [BiomedCLIP](https://huggingface.co/microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224)                       | PMC article<br>*60K-IM*                                                                                                         | MRI, CT, X-ray, Histology, Gross            |
+| Grounding      | [Grounding DINO](https://github.com/IDEA-Research/GroundingDINO)                    | WORD, etc.*<br>                                                                                                                 | MRI, CT, X-ray, Histology                   |
+| Segmentation with bounding-box prompts (Segmentation)    | [MedSAM](https://github.com/bowang-lab/MedSAM)                            | WORD, etc.*                                                                                                                      | MRI, CT, X-ray, Histology, Gross            |
+| Segmentation with text prompts (G-Seg)        | [Grounding DINO](https://github.com/IDEA-Research/GroundingDINO)  + [MedSAM](https://github.com/bowang-lab/MedSAM)                  | WORD, etc.*                                                                                                                      | MRI, CT, X-ray, Histology                   |
+| Medical report generation (MRG)            | [ChatCAD](https://github.com/zhaozh10/ChatCAD)                           | MIMIC-CXR                                                                                                               | X-ray                                        |
+| Retrieval augmented generation (RAG)            | [ChatCAD+](https://github.com/zhaozh10/ChatCAD)                         | Merck Manual                                                                                                            | --                                           |
 
 ---
 
