@@ -90,6 +90,14 @@ CUDA_VISIBLE_DEVICES=0 python llava/eval/model_vqa.py \
     --answers-file /path_to_your_output_answer \
     --temperature 0.2
 ```
+### GPT-4o inference
+```
+...
+```
+### GPT-4 evalution
+```
+...
+```
 ## Data Download
 ### Instruction-tuning Dataset
 We build the first open-source instruction tuning dataset for multi-modal medical agents.
