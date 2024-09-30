@@ -18,7 +18,7 @@ def process_entry(report, info, chatbot):
         message_history = [{"role": "user", "content": report}]
         user_input = ""
         ref_record = concat_history(message_history)
-        response, check, query, abnormality_check, [raw_topic, cos_sim], knowledge = handle_text_input(chatbot, user_input, ref_record, check=True)
+        response, check, query, abnormality_check, [raw_topic, cos_sim], knowledge = handle_text_input(chatbot, user_input, ref_record, force_generate=True)
         if "请谨慎采纳" in response or check == 0:
             return None
         return {"id": info[0], "study_id":info[1], "subject_id":info[2], "report": report,

@@ -239,7 +239,7 @@ def process_entry(chatbot):
                                                                             "<value>": random.choice(values_templates)})
         thinkings = call_gpt4o(system_message, user_message_1, assistant_message_1, user_message_2, assistant_message_2, user_message_3, assistant_message_3, user_message_final)
         try:
-            response, [topic_range, cos_sim], knowledge = handle_text_input(chatbot, user_message_final, "")
+            response, check, query, abnormality_check, [topic_range, cos_sim], knowledge = handle_text_input(chatbot, user_message_final, "")
         except:
             return None
         if topic_range is None or "请谨慎采纳" in response or "抱歉" in knowledge or "图书管理员" in knowledge or "专业知识" in knowledge or "对不起" in knowledge:

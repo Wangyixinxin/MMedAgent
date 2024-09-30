@@ -208,7 +208,7 @@ def process_entry(chatbot, disease_info):
     report = report_gen(report_gen_system_message, f"from {str(random_disease)} choose a disease. Generate a medical report in ENGLISH for the patient with that disease")
     user_message_final = report
     try:
-        response, [topic_range, cos_sim], knowledge = handle_text_input(chatbot, user_message_final, "")
+        response, check, query, abnormality_check, [topic_range, cos_sim], knowledge = handle_text_input(chatbot, user_message_final, "")
     except:
         return None
     if topic_range is None or "请谨慎采纳" in response or "抱歉" in knowledge or "图书管理员" in knowledge or "专业知识" in knowledge or "对不起" in knowledge:

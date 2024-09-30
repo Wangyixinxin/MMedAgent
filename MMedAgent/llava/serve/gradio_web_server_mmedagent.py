@@ -301,7 +301,7 @@ def add_text(state, text, image_dict, ref_image_dict, image_process_mode, with_d
     return (state, state.to_gradio_chatbot(with_debug_parameter=with_debug_parameter_from_state), "", None, None) + (disable_btn,) * 6
 
 
-def http_bot(state, model_selector, temperature, top_p, max_new_tokens, with_debug_parameter_from_state, request: gr.Request):
+def http_bot(state, model_selector, temperature, top_p, max_new_tokens, with_debug_parameter_from_state, api_key, request: gr.Request):
     logger.info(f"http_bot. ip: {request.client.host}")
     start_tstamp = time.time()
     model_name = model_selector
@@ -396,13 +396,14 @@ def http_bot(state, model_selector, temperature, top_p, max_new_tokens, with_deb
 
     # Make requests
     pload = {
-        "model": model_name,
+        "model": model_selector,
         "prompt": prompt,
         "temperature": float(temperature),
         "top_p": float(top_p),
         "max_new_tokens": min(int(max_new_tokens), 1536),
         "stop": state.sep if state.sep_style in [SeparatorStyle.SINGLE, SeparatorStyle.MPT] else state.sep2,
-        "images": f'List of {len(state.get_images())} images: {all_image_hash}',
+        "images": state.get_images(),
+        "openai_key": api_key  
     }
     logger.info(f"==== request ====\n{pload}\n==== request ====")
 
@@ -482,8 +483,10 @@ def http_bot(state, model_selector, temperature, top_p, max_new_tokens, with_deb
             image = None
         api_paras = {
             'image': image,
+            "prompt": prompt,
             "box_threshold": 0.3,
             "text_threshold": 0.25,
+            "openai_key": api_key,
             **tool_cfg[0]['API_params']
         }
         if api_name in ['inpainting']:
@@ -518,18 +521,30 @@ def http_bot(state, model_selector, temperature, top_p, max_new_tokens, with_deb
         image_seg = None  # for openseed
         iou_sort_masks = None
         if 'boxes' in tool_response:
-            tool_response['boxes'] = [[R(_b) for _b in bb]
-                                      for bb in tool_response['boxes']]
+            try:
+                tool_response['boxes'] = [[R(_b) for _b in bb]
+                                        for bb in tool_response['boxes']]
+            except:
+                pass
         if 'logits' in tool_response:
-            tool_response['logits'] = [R(_l) for _l in tool_response['logits']]
+            try:
+                tool_response['logits'] = [R(_l) for _l in tool_response['logits']]
+            except:
+                pass
         if 'scores' in tool_response:
-            tool_response['scores'] = [R(_s) for _s in tool_response['scores']]
+            try:
+                tool_response['scores'] = [R(_s) for _s in tool_response['scores']]
+            except:
+                pass
         if "masks_rle" in tool_response:
             masks_rle = tool_response.pop("masks_rle")
         if "edited_image" in tool_response:
             edited_image = tool_response.pop("edited_image")
         if "size" in tool_response:
-            _ = tool_response.pop("size")
+            try:
+                _ = tool_response.pop("size")
+            except:
+                pass
         if api_name == "easyocr":
             _ = tool_response.pop("boxes")
             _ = tool_response.pop("scores")
@@ -579,6 +594,7 @@ def http_bot(state, model_selector, temperature, top_p, max_new_tokens, with_deb
             "max_new_tokens": min(int(max_new_tokens), 1536),
             "stop": state.sep if state.sep_style in [SeparatorStyle.SINGLE, SeparatorStyle.MPT] else state.sep2,
             "images": f'List of {len(state.get_images())} images: {all_image_hash}',
+             "openai_key": api_key
         }
         logger.info(f"==== request ====\n{pload}")
         pload['images'] = state.get_images()
@@ -738,7 +754,7 @@ def build_demo(embed_mode):
                     gr.Markdown(
                         "The reference image is for some specific tools, like SEEM.")
                     ref_image_box = ImageMask()
-
+                
                 with gr.Accordion("Parameters", open=False, visible=False) as parameter_row:
                     image_process_mode = gr.Radio(
                         ["Crop", "Resize", "Pad"],
@@ -752,6 +768,7 @@ def build_demo(embed_mode):
                         minimum=0, maximum=1024, value=512, step=64, interactive=True, label="Max output tokens",)
                     # with_debug_parameter_check_box = gr.Checkbox(label="With debug parameter", checked=args.with_debug_parameter)
 
+                api_key_input = gr.Textbox(label="OpenAI API Key", placeholder="Enter your OpenAI API key", type="password")
             with gr.Column(scale=6):
                 chatbot = gr.Chatbot(
                     elem_id="chatbot", label="LLaVA-Plus Chatbot", height=550)
@@ -792,13 +809,25 @@ def build_demo(embed_mode):
                 gr.Examples(examples=[
                     [f"{cur_dir}/examples/0a4fbc9ade84a7abd1680eb8ba031a9d.jpg",
                     "What is the imaging modality used for this medical image?"],
-                    [f"{cur_dir}/examples/005_085_t1.jpg",
-                    "Can you classify this medical image?"],
                     [f"{cur_dir}/examples/27660471_f14-ott-9-5531.jpg",
                     "What is the specific type of histopathology depicted in the image?"],
                     [f"{cur_dir}/examples/32535614_f2-amjcaserep-21-e923356.jpg",
-                    "Can you tel me the modality of this image?"]
+                    "Can you tell me the modality of this image?"]
                 ], inputs=[imagebox, textbox], label="Image Modality Classification Examples: ")
+                gr.Examples(examples=[
+                    [f"{cur_dir}/examples/chest.jpg",
+                    "Can you generate a report based on this image?"]
+                ], inputs=[imagebox, textbox], label="Medical Report Generation Examples: ")
+                false_report = """
+                               This case highlights a critical oversight in a complex medical situation. While the initial focus on the patient's syncope was well-executed, subsequent findings of a 4.9 cm aortic aneurysm with celiac artery involvement were not sufficiently followed up. 
+                               Comprehensive imaging of the entire aorta at the discovery point was crucial and could have potentially led to a more favorable outcome. It should be noted that the radiologist conducting the pulmonary artery CT scan should have autonomously extended the imaging to the full aorta without needing further orders.
+                               """
+
+                gr.Examples(examples=[
+                    ["What is breast cancer and how should I treat it?"],
+                    ["Here is a report\n"+false_report]],
+                    inputs=[textbox], label="Retrieval Augmented Generation Examples:"
+                )
 
 
 
@@ -810,12 +839,16 @@ def build_demo(embed_mode):
 
         # Register listeners
 
-        textbox.submit(add_text, [state, textbox, imagebox, ref_image_box, image_process_mode, with_debug_parameter_state], [state, chatbot, textbox, imagebox, ref_image_box] + [debug_btn]
-                       ).then(http_bot, [state, model_selector, temperature, top_p, max_output_tokens, with_debug_parameter_state],
-                              [state, chatbot] + [debug_btn])
-        submit_btn.click(add_text, [state, textbox, imagebox, ref_image_box, image_process_mode, with_debug_parameter_state], [state, chatbot, textbox, imagebox, ref_image_box] + [debug_btn]
-                         ).then(http_bot, [state, model_selector, temperature, top_p, max_output_tokens, with_debug_parameter_state],
-                                [state, chatbot] + [debug_btn])
+        textbox.submit(add_text, [state, textbox, imagebox, ref_image_box, image_process_mode, with_debug_parameter_state], 
+                    [state, chatbot, textbox, imagebox, ref_image_box, debug_btn]
+                    ).then(http_bot, [state, model_selector, temperature, top_p, max_output_tokens, with_debug_parameter_state, api_key_input],
+                        [state, chatbot, debug_btn])
+
+        submit_btn.click(add_text, [state, textbox, imagebox, ref_image_box, image_process_mode, with_debug_parameter_state], 
+                        [state, chatbot, textbox, imagebox, ref_image_box, debug_btn]
+                    ).then(http_bot, [state, model_selector, temperature, top_p, max_output_tokens, with_debug_parameter_state, api_key_input],
+                        [state, chatbot, debug_btn])
+        
         debug_btn.click(change_debug_state, [state, with_debug_parameter_state], [
                         state, chatbot, textbox, imagebox] + [debug_btn, with_debug_parameter_state])
 
