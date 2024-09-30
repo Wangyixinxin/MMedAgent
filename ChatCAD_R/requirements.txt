@@ -8,7 +8,7 @@ langchain==0.0.180
 modelscope==1.5.2
 nibabel==4.0.2
 numpy==1.23.2
-openai==1.43.0
+openai==0.28.1
 opencv_contrib_python==4.6.0.66
 pandas==1.4.3
 Pillow==9.5.0
