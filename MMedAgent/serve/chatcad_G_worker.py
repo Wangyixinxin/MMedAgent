@@ -147,10 +147,8 @@ class ModelWorker:
 
     def generate_stream_func(self, params):
         image_path = params["image"]
-        api_key = params["openai_key"]
         image = self.load_image(image_path)
-        openai.api_key = api_key
-        report = MRG(image, api_key=api_key) 
+        report = MRG(image, api_key=params["openai_key"]) 
 
         return report
 
@@ -194,6 +192,7 @@ def create_background_tasks():
 @app.post("/worker_generate")
 async def api_generate(request: Request):
     params = await request.json()
+    openai.api_key = params["openai_key"]
     await acquire_model_semaphore()
     output = worker.generate_gate(params)
     release_model_semaphore()

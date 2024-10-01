@@ -19,6 +19,30 @@ fivedisease_zh={
     "胸腔积液":4,
         }
 
+class ProxyEnvironment:
+    def __init__(self, http_proxy, https_proxy):
+        self.http_proxy = http_proxy
+        self.https_proxy = https_proxy
+        self.old_http_proxy = None
+        self.old_https_proxy = None
+
+    def __enter__(self):
+        self.old_http_proxy = os.getenv("HTTP_PROXY")
+        self.old_https_proxy = os.getenv("HTTPS_PROXY")
+        
+        os.environ["HTTP_PROXY"] = self.http_proxy
+        os.environ["HTTPS_PROXY"] = self.https_proxy
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if self.old_http_proxy is not None:
+            os.environ["HTTP_PROXY"] = self.old_http_proxy
+        else:
+            os.environ.pop("HTTP_PROXY", None)
+        
+        if self.old_https_proxy is not None:
+            os.environ["HTTPS_PROXY"] = self.old_https_proxy
+        else:
+            os.environ.pop("HTTPS_PROXY", None)
 
 class base_bot:
     def start(self):
@@ -50,10 +74,6 @@ class gpt_bot(base_bot):
         self.sent_model = SentenceModel()
         self.msd_dict=json.load(open(msd_path,'r',encoding='utf-8'))
 
-        # Use proxy if needed :
-        # os.environ['HTTP_PROXY'] = 'socks5h://127.0.0.1:1080'
-        # os.environ['HTTPS_PROXY'] = 'socks5h://127.0.0.1:1080'
-
     def ret_local(self,query:str,mode=1):
         topic_range, [_,_]=query_range(self.sent_model,query,k=1,bar=0.0)
         # Chinese
@@ -79,6 +99,18 @@ class gpt_bot(base_bot):
         }
         response = openai.ChatCompletion.create(**request_params)
         return response['choices'][0]['message']['content']
+
+    ### This is chat_with_gpt with proxy used:
+    # def chat_with_gpt(self, prompt):
+    #     with ProxyEnvironment('socks5h://127.0.0.1:1080', 'socks5h://127.0.0.1:1080'):
+    #         messages = [{"role": "user", "content": prompt}]
+    #         request_params = {
+    #             "model": self.engine,
+    #             "messages": messages
+    #         }
+    #         response = openai.ChatCompletion.create(**request_params)
+
+    #     return response['choices'][0]['message']['content']
 
 
     def report_cxr_zh(self,img, mode:str='run'):

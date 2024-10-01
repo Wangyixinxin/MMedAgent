@@ -136,19 +136,9 @@ class ModelWorker:
             "queue_length": self.get_queue_length(),
         }
 
-    def load_image(self, image_path: str):
-        if os.path.exists(image_path):
-            image_source = Image.open(image_path).convert("RGB")
-        else:
-            # base64 coding
-            image_source = Image.open(BytesIO(base64.b64decode(image_path))).convert("RGB")
-        # image = np.asarray(image_source)
-        return image_source
 
     def generate_stream_func(self, params):
-        api_key = params["openai_key"]
-        openai.api_key = api_key
-        report = RAG(params["prompt"], api_key=api_key)
+        report = RAG(params["prompt"], api_key=params["openai_key"])
 
         return report
 
@@ -192,6 +182,7 @@ def create_background_tasks():
 @app.post("/worker_generate")
 async def api_generate(request: Request):
     params = await request.json()
+    openai.api_key = params["openai_key"]
     await acquire_model_semaphore()
     output = worker.generate_gate(params)
     release_model_semaphore()

@@ -730,7 +730,7 @@ The service is a research preview intended for non-commercial use only, subject 
 def build_demo(embed_mode):
     textbox = gr.Textbox(
         show_label=False, placeholder="Enter text and press ENTER", visible=False, container=False)
-    with gr.Blocks(title="LLaVA-Plus", theme=gr.themes.Base()) as demo:
+    with gr.Blocks(title="MMedAgent", theme=gr.themes.Base()) as demo:
         state = gr.State()
 
         if not embed_mode:
@@ -765,13 +765,13 @@ def build_demo(embed_mode):
                     top_p = gr.Slider(
                         minimum=0.0, maximum=1.0, value=0.7, step=0.1, interactive=True, label="Top P",)
                     max_output_tokens = gr.Slider(
-                        minimum=0, maximum=1024, value=512, step=64, interactive=True, label="Max output tokens",)
+                        minimum=0, maximum=2048, value=512, step=64, interactive=True, label="Max output tokens",)
                     # with_debug_parameter_check_box = gr.Checkbox(label="With debug parameter", checked=args.with_debug_parameter)
 
                 api_key_input = gr.Textbox(label="OpenAI API Key", placeholder="Enter your OpenAI API key", type="password")
             with gr.Column(scale=6):
                 chatbot = gr.Chatbot(
-                    elem_id="chatbot", label="LLaVA-Plus Chatbot", height=550)
+                    elem_id="chatbot", label="MMedAgent Chatbot", height=550)
                 with gr.Row():
                     with gr.Column(scale=8):
                         textbox.render()
@@ -779,10 +779,10 @@ def build_demo(embed_mode):
                         submit_btn = gr.Button(value="Submit", visible=False)
                 with gr.Row(visible=False) as button_row:
                     debug_btn = gr.Button(
-                        value="🈚  Prog (off)", interactive=True)
+                        value="🈚  Show Progress (off)", interactive=True)
                     # import ipdb; ipdb.set_trace()
                 if args.with_debug_parameter:
-                    debug_btn.value = "🈶 Prog (on)"
+                    debug_btn.value = "🈶 Show Progress (on)"
                 with_debug_parameter_state = gr.State(
                     value=args.with_debug_parameter,
                 )
@@ -824,8 +824,8 @@ def build_demo(embed_mode):
                                """
 
                 gr.Examples(examples=[
-                    ["What is breast cancer and how should I treat it?"],
-                    ["Here is a report\n"+false_report]],
+                    ["I'm suffering from anorexia nervosa. Can you explain it and tell me how to deal with it? Please consult authoritative source."],
+                    ["Analyze this report and retrieve information from an authoritative database:\n"+false_report]],
                     inputs=[textbox], label="Retrieval Augmented Generation Examples:"
                 )
 
@@ -871,7 +871,7 @@ if __name__ == "__main__":
     parser.add_argument("--host", type=str, default="0.0.0.0")
     parser.add_argument("--port", type=int)
     parser.add_argument("--controller-url", type=str,
-                        default="http://localhost:21001")
+                        default="http://localhost:20001")
     parser.add_argument("--concurrency-count", type=int, default=8)
     parser.add_argument("--model-list-mode", type=str, default="once",
                         choices=["once", "reload"])
