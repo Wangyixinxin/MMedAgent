@@ -3,7 +3,7 @@
 The first multimodal medical AI Agent incorporating a wide spectrum of tools to handle various medical
 tasks across different modalities seamlessly.
 
-[[Paper, EMNLP 2024 (Findings)](https://arxiv.org/abs/2407.02483)] [Demo]
+[[Paper, EMNLP 2024 (Findings)](https://arxiv.org/abs/2407.02483)] [Demo](https://d8ac8084982e87ad54.gradio.live/)  (*NOTE: This is a temporary link*)
 
 Binxu Li, Tiankai Yan, Yuanting Pan, Jie Luo, Ruiyang Ji, Jiayuan Ding, Zhe Xu, Shilong Liu, Haoyu Dong*, Zihao Lin*, Yixin Wang* 
 
