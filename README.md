@@ -67,8 +67,14 @@ conda create -f environment.yml
 ```
 - Run the following commands in separate terminals:
 
-  - Launch controller  ```python -m llava.serve.controller --host 0.0.0.0 --port 20001```
-  - Launch model worker ```python -m llava.serve.model_worker --host 0.0.0.0 --controller http://localhost:20001 --port 40000 --worker http://localhost:40000 --model-path <Your Model Path>```
+  - Launch controller
+    ```
+    python -m llava.serve.controller --host 0.0.0.0 --port 20001
+    ```
+  - Launch model worker
+    ```
+    python -m llava.serve.model_worker --host 0.0.0.0 --controller http://localhost:20001 --port 40000 --worker http://localhost:40000 --model-path <Your Model Path>
+    ```
   - Launch tool workers
     ```
     python serve/grounding_dino_worker.py
@@ -78,7 +84,10 @@ conda create -f environment.yml
     python serve/chatcad_G_worker.py
     python serve/chatcad_R_worker.py    
     ```
-  - Launch gradio web server ```python llava/serve/gradio_web_server_mmedagent.py --controller http://localhost:20001 --model-list-mode reload```
+  - Launch gradio web server
+    ```
+    python llava/serve/gradio_web_server_mmedagent.py --controller http://localhost:20001 --model-list-mode reload
+    ```
 - You can now access the model in localhost:7860.
 
 ## Train
