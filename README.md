@@ -89,16 +89,37 @@ conda create -f environment.yml
     python llava/serve/gradio_web_server_mmedagent.py --controller http://localhost:20001 --model-list-mode reload
     ```
 - You can now access the model in localhost:7860.
+## Base Model Download
 
+The model weights below are *delta* weights. The usage of LLaVA-Med checkpoints should comply with the base LLM's model license: [LLaMA](https://github.com/facebookresearch/llama/blob/main/MODEL_CARD.md).
+
+We provide delta weights for LLaVA-Med and 3 LLaVA-Med models each finetuned on the 3 VQA datasets:
+
+ Model Descriptions | Model Delta Weights | Size |
+| --- | --- | ---: |
+| LLaVA-Med | [llava_med_in_text_60k_ckpt2_delta.zip](https://hanoverprod.z21.web.core.windows.net/med_llava/models/llava_med_in_text_60k_ckpt2_delta.zip) | 11.06 GB |
+
+Instructions:
+
+1. Download the delta weights above and unzip.
+1. Get the original LLaMA weights in the huggingface format by following the instructions [here](https://huggingface.co/docs/transformers/main/model_doc/llama).
+1. Use the following scripts to get original LLaVA-Med weights by applying our delta. In the script below, set the --delta argument to the path of the unzipped delta weights directory from step 1.
+
+```bash
+python3 -m llava.model.apply_delta \
+    --base /path/to/llama-7b \
+    --target ./base_model \
+    --delta /path/to/llava_med_delta_weights
+```
 ## Train
 ```
 deepspeed llava/train/train.py \
     --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 2e-5 \
     --deepspeed ./scripts/zero2.json \
-    --model_name_or_path /path_to_your_basemodel  \
+    --model_name_or_path ./base_model  \
     --version v1\
-    --data_path /path_to_data \
-    --image_folder /home/jack/Projects/yixin-llm/images_path/ \
+    --data_path ./train_data_json/example.jsonl \
+    --image_folder ./train_images \
     --vision_tower openai/clip-vit-large-patch14-336 \
     --mm_projector_type mlp2x_gelu \
     --mm_vision_select_layer -2 \
