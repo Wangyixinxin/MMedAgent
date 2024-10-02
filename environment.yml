@@ -299,4 +299,3 @@ dependencies:
     - yapf==0.40.2
     - yarl==1.9.4
     - zipp==3.19.2
-prefix: /home/jack/anaconda3/envs/llavaplus
