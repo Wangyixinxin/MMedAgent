@@ -1,5 +1,8 @@
 # MMedAgent: Learning to Use Medical Tools with Multi-modal Agent
 
+[![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Data License](https://img.shields.io/badge/Data%20License-CC%20By%20NC%204.0-red.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+
 The first multimodal medical AI Agent incorporating a wide spectrum of tools to handle various medical
 tasks across different modalities seamlessly.
 
