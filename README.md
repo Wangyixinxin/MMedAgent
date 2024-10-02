@@ -6,7 +6,7 @@
 The first multimodal medical AI Agent incorporating a wide spectrum of tools to handle various medical
 tasks across different modalities seamlessly.
 
-[[Paper, EMNLP 2024 (Findings)](https://arxiv.org/abs/2407.02483)] [Demo](https://1cc0bf26516bc745fd.gradio.live/)  (*NOTE: This is a temporary link. Choose "merge_med_llava_3" in the dropdown menu on top left*)
+[[Paper, EMNLP 2024 (Findings)](https://arxiv.org/abs/2407.02483)] [Demo](https://1cc0bf26516bc745fd.gradio.live/)  (*NOTE: This is a temporary link. Please follow [Web UI Inference](## Web UI) to build the server. *)
 
 Binxu Li, Tiankai Yan, Yuanting Pan, Jie Luo, Ruiyang Ji, Jiayuan Ding, Zhe Xu, Shilong Liu, Haoyu Dong*, Zihao Lin*, Yixin Wang* 
 
@@ -62,7 +62,7 @@ git clone https://github.com/Wangyixinxin/MMedAgent.git
     git clone https://github.com/bowang-lab/MedSAM.git
     ```
 
-6. Web UI Inference
+## Web UI and server
 - Create environment
 ```
 cd MMedAgent
@@ -210,8 +210,6 @@ We build the first open-source instruction tuning dataset for multi-modal medica
 | xxx | xx MiB | 
 
 ## Model Download
-
-## Web UI
 
 
 ## Citation
