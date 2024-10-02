@@ -1,11 +1,11 @@
 #!/bin/bash
-deepspeed --include=localhost:0,1 llava/train/train.py \
+deepspeed llava/train/train_mem.py \
     --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 2e-5 \
     --deepspeed ./scripts/zero2.json \
-    --model_name_or_path /home/jack/Projects/yixin-llm/outputck_llava  \
+    --model_name_or_path ./base_model  \
     --version v1\
-    --data_path /home/jack/Projects/yixin-llm/all_filtered_new_stage.json \
-    --image_folder /home/jack/Projects/yixin-llm/images_path/ \
+    --data_path ./train_data_json/example.jsonl \
+    --image_folder ./train_images \
     --vision_tower openai/clip-vit-large-patch14-336 \
     --mm_projector_type mlp2x_gelu \
     --mm_vision_select_layer -2 \
@@ -14,7 +14,7 @@ deepspeed --include=localhost:0,1 llava/train/train.py \
     --image_aspect_ratio pad \
     --group_by_modality_length False \
     --bf16 True \
-    --output_dir ./checkpoints/medagentv6 \
+    --output_dir ./checkpoints/output_lora_weights \
     --num_train_epochs 30 \
     --per_device_train_batch_size 12 \
     --per_device_eval_batch_size 1 \
@@ -29,7 +29,7 @@ deepspeed --include=localhost:0,1 llava/train/train.py \
     --lr_scheduler_type "cosine" \
     --logging_steps 1 \
     --tf32 True \
-    --model_max_length 2304 \
+    --model_max_length 2048 \
     --gradient_checkpointing True \
     --dataloader_num_workers 4 \
     --lazy_preprocess True \

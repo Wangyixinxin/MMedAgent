@@ -112,6 +112,7 @@ python3 -m llava.model.apply_delta \
     --delta /path/to/llava_med_delta_weights
 ```
 ## Train
+train with lora:
 ```
 deepspeed llava/train/train_mem.py \
     --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 2e-5 \
@@ -149,6 +150,7 @@ deepspeed llava/train/train_mem.py \
     --lazy_preprocess True \
     --report_to wandb
 ```
+or use [`tuning.sh`](https://github.com/Wangyixinxin/MMedAgent/blob/main/tuning.sh)
 ## Evaluation
 ### apply lora (if you enable lora when training)
 ```
@@ -157,6 +159,7 @@ CUDA_VISIBLE_DEVICES=0 python scripts/merge_lora_weights.py \
     --model-base ./base_model \
     --save-model-path ./llava_med_agent
 ```
+or use [`merge.sh`](https://github.com/Wangyixinxin/MMedAgent/blob/main/merge.sh)
 ### Inference
 ```
 CUDA_VISIBLE_DEVICES=0 python llava/eval/model_vqa.py \
@@ -166,6 +169,7 @@ CUDA_VISIBLE_DEVICES=0 python llava/eval/model_vqa.py \
     --answers-file ./eval_data_json/output_agent_eval_example.jsonl \
     --temperature 0.2
 ```
+or use [`eval.sh`](https://github.com/Wangyixinxin/MMedAgent/blob/main/eval.sh)
 ### GPT-4o inference
 ```
 python ./llava/eval/eval_gpt4o.py \
@@ -174,6 +178,7 @@ python ./llava/eval/eval_gpt4o.py \
     --output ./eval_data_json/output_gpt4o_eval_example.jsonl \
     --max-tokens 1024
 ```
+or use [`eval_gpt4o.sh`](https://github.com/Wangyixinxin/MMedAgent/blob/main/eval_gpt4o.sh)
 ### GPT-4 evalution
 ```
 python ./llava/eval/eval_multimodal_chat_gpt_score.py \
@@ -181,6 +186,7 @@ python ./llava/eval/eval_multimodal_chat_gpt_score.py \
     --input_path ./eval_data_json/output_gpt4o_eval_example.jsonl
     --output_path ./eval_data_json/compare_gpt4o_medagent_reivew.jsonl
 ```
+or use [`eval_gpt4.sh`](https://github.com/Wangyixinxin/MMedAgent/blob/main/eval_gpt4.sh)
 ## Data Download
 ### Instruction-tuning Dataset
 We build the first open-source instruction tuning dataset for multi-modal medical agents.
