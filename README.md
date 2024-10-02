@@ -168,11 +168,18 @@ CUDA_VISIBLE_DEVICES=0 python llava/eval/model_vqa.py \
 ```
 ### GPT-4o inference
 ```
-...
+python ./llava/eval/eval_gpt4o.py \
+    --api-key "your-api-key" \
+    --question ./eval_data_json/eval_agent_tool_use.jsonl \
+    --output ./eval_data_json/gpt4o_inference.jsonl \
+    --max-tokens 1024
 ```
 ### GPT-4 evalution
 ```
-...
+python ./llava/eval/eval_multimodal_chat_gpt_score.py \
+    --question_input_path ./eval_data_json/eval_agent_tool_use.jsonl \
+    --input_path ./eval_data_json/gpt4o_inference.jsonl
+    --output_path ./eval_data_json/compare_gpt4o_medagent_reivew.jsonl
 ```
 ## Data Download
 ### Instruction-tuning Dataset
