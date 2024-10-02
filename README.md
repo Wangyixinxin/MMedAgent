@@ -40,7 +40,15 @@ git clone https://github.com/Wangyixinxin/MMedAgent.git
 2.  Create environment
 ```
 cd MMedAgent
-conda create -f environment.yml
+conda create -n mmedagent python=3.10 -y
+conda activate mmedagent
+pip install --upgrade pip  # enable PEP 660 support
+pip install -e .
+```
+3. Additional package for training
+```
+pip install -e ".[train]"
+pip install flash-attn --no-build-isolation
 ```
 
 ## Model Download
