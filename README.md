@@ -40,7 +40,7 @@ git clone https://github.com/Wangyixinxin/MMedAgent.git
 2.  Create environment
 ```
 cd MMedAgent
-conda create -f environment.yml -n mmedagent
+conda create -f environment.yml
 ```
 
 ## Model Download
