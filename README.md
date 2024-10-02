@@ -37,62 +37,18 @@ Binxu Li, Tiankai Yan, Yuanting Pan, Jie Luo, Ruiyang Ji, Jiayuan Ding, Zhe Xu, 
 ```
 git clone https://github.com/Wangyixinxin/MMedAgent.git
 ```
-2. Download ChatCAD Dependencies
-
-- Please download the dependent checkpoints and JSON files for both [ChatCAD_R](ChatCAD_R) and [MMedAgent/src/ChatCAD_R](MMedAgent/src/ChatCAD_R).
-
-- You can download from either the original ChatCAD [repo](https://github.com/zhaozh10/ChatCAD?tab=readme-ov-file) or from [Google Drive](https://drive.google.com/drive/folders/14OWwsFjphsjqT-nH9GHgf5Sy7f1aL9Lz?usp=sharing).
-  
-- Please save r2gcmn_mimic-cxr.pth and JFchexpert.pth in ChatCAD_R/weights/ and save annotation.json in ChatCAD_R/.
-
-3. Download Model Checkpoint
-
-   TBA
-
-4. Download Tools
-   
-   - GroundingDINO
-    ```
-    cd MMedAgent/src
-    git clone https://github.com/IDEA-Research/GroundingDINO.git
-    ```
-   - MedSAM
-    ```
-    cd MMedAgent/src
-    git clone https://github.com/bowang-lab/MedSAM.git
-    ```
-
-## Web UI and server
-- Create environment
+2.  Create environment
 ```
 cd MMedAgent
 conda create -f environment.yml
 ```
-- Run the following commands in separate terminals:
 
-  - Launch controller
-    ```
-    python -m llava.serve.controller --host 0.0.0.0 --port 20001
-    ```
-  - Launch model worker
-    ```
-    python -m llava.serve.model_worker --host 0.0.0.0 --controller http://localhost:20001 --port 40000 --worker http://localhost:40000 --model-path <Your Model Path>
-    ```
-  - Launch tool workers
-    ```
-    python serve/grounding_dino_worker.py
-    python serve/MedSAM_worker.py
-    python serve/grounded_medsam_worker.py
-    python serve/biomedclip_worker.py
-    python serve/chatcad_G_worker.py
-    python serve/chatcad_R_worker.py    
-    ```
-  - Launch gradio web server
-    ```
-    python llava/serve/gradio_web_server_mmedagent.py --controller http://localhost:20001 --model-list-mode reload
-    ```
-- You can now access the model in localhost:7860.
-## Base Model Download
+## Model Download
+
+### MMedAgent Checkpoint
+   TBA
+
+### Base Model Download
 
 The model weights below are *delta* weights. The usage of LLaVA-Med checkpoints should comply with the base LLM's model license: [LLaMA](https://github.com/facebookresearch/llama/blob/main/MODEL_CARD.md).
 
@@ -209,9 +165,55 @@ We build the first open-source instruction tuning dataset for multi-modal medica
 | --- | --- |
 | xxx | xx MiB | 
 
-## Model Download
+
+## Web UI and serve
+1. Download ChatCAD Dependencies
+
+- Please download the dependent checkpoints and JSON files for both [ChatCAD_R](ChatCAD_R) and [MMedAgent/src/ChatCAD_R](MMedAgent/src/ChatCAD_R).
+
+- You can download from either the original ChatCAD [repo](https://github.com/zhaozh10/ChatCAD?tab=readme-ov-file) or from [Google Drive](https://drive.google.com/drive/folders/14OWwsFjphsjqT-nH9GHgf5Sy7f1aL9Lz?usp=sharing).
+  
+- Please save r2gcmn_mimic-cxr.pth and JFchexpert.pth in ChatCAD_R/weights/ and save annotation.json in ChatCAD_R/.
 
 
+2. Download Tools
+   
+   - GroundingDINO
+    ```
+    cd MMedAgent/src
+    git clone https://github.com/IDEA-Research/GroundingDINO.git
+    ```
+   - MedSAM
+    ```
+    cd MMedAgent/src
+    git clone https://github.com/bowang-lab/MedSAM.git
+    ```
+
+3. Run the following commands in separate terminals:
+
+  - Launch controller
+    ```
+    python -m llava.serve.controller --host 0.0.0.0 --port 20001
+    ```
+  - Launch model worker
+    ```
+    python -m llava.serve.model_worker --host 0.0.0.0 --controller http://localhost:20001 --port 40000 --worker http://localhost:40000 --model-path <Your Model Path>
+    ```
+  - Launch tool workers
+    ```
+    python serve/grounding_dino_worker.py
+    python serve/MedSAM_worker.py
+    python serve/grounded_medsam_worker.py
+    python serve/biomedclip_worker.py
+    python serve/chatcad_G_worker.py
+    python serve/chatcad_R_worker.py    
+    ```
+  - Launch gradio web server
+    ```
+    python llava/serve/gradio_web_server_mmedagent.py --controller http://localhost:20001 --model-list-mode reload
+    ```
+4. You can now access the model in localhost:7860.
+   
 ## Citation
 If you find this paper or code useful for your research, please cite our paper:
 ```
