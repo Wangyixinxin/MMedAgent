@@ -113,7 +113,7 @@ python3 -m llava.model.apply_delta \
 ```
 ## Train
 ```
-deepspeed llava/train/train.py \
+deepspeed llava/train/train_mem.py \
     --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 2e-5 \
     --deepspeed ./scripts/zero2.json \
     --model_name_or_path ./base_model  \
@@ -128,7 +128,7 @@ deepspeed llava/train/train.py \
     --image_aspect_ratio pad \
     --group_by_modality_length False \
     --bf16 True \
-    --output_dir ./checkpoints/medagentv6 \
+    --output_dir ./checkpoints/output_lora_weights \
     --num_train_epochs 30 \
     --per_device_train_batch_size 12 \
     --per_device_eval_batch_size 1 \
@@ -153,32 +153,32 @@ deepspeed llava/train/train.py \
 ### apply lora (if you enable lora when training)
 ```
 CUDA_VISIBLE_DEVICES=0 python scripts/merge_lora_weights.py \
-    --model-path /path_to_lora_weights \
-    --model-base /path_to_base_model \
-    --save-model-path /path_to_model_checkpoint
+    --model-path ./checkpoints/output_lora_weights \
+    --model-base ./base_model \
+    --save-model-path ./llava_med_agent
 ```
 ### Inference
 ```
 CUDA_VISIBLE_DEVICES=0 python llava/eval/model_vqa.py \
-    --model-path /path_to_your_model \
-    --question-file /path_to_your_eval_data \
-    --image-folder /path_to_your_eval_image \
-    --answers-file /path_to_your_output_answer \
+    --model-path ./llava_med_agent \
+    --question-file ./eval_data_json/eval_example.jsonl \
+    --image-folder ./eval_images \
+    --answers-file ./eval_data_json/output_agent_eval_example.jsonl \
     --temperature 0.2
 ```
 ### GPT-4o inference
 ```
 python ./llava/eval/eval_gpt4o.py \
     --api-key "your-api-key" \
-    --question ./eval_data_json/eval_agent_tool_use.jsonl \
-    --output ./eval_data_json/gpt4o_inference.jsonl \
+    --question ./eval_data_json/eval_example.jsonl \
+    --output ./eval_data_json/output_gpt4o_eval_example.jsonl \
     --max-tokens 1024
 ```
 ### GPT-4 evalution
 ```
 python ./llava/eval/eval_multimodal_chat_gpt_score.py \
-    --question_input_path ./eval_data_json/eval_agent_tool_use.jsonl \
-    --input_path ./eval_data_json/gpt4o_inference.jsonl
+    --question_input_path ./eval_data_json/eval_example.jsonl \
+    --input_path ./eval_data_json/output_gpt4o_eval_example.jsonl
     --output_path ./eval_data_json/compare_gpt4o_medagent_reivew.jsonl
 ```
 ## Data Download
