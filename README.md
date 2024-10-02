@@ -172,7 +172,7 @@ CUDA_VISIBLE_DEVICES=0 python llava/eval/model_vqa.py \
 or use [`eval.sh`](https://github.com/Wangyixinxin/MMedAgent/blob/main/eval.sh)
 ### GPT-4o inference
 ```
-python ./llava/eval/eval_gpt4o.py \
+python llava/eval/eval_gpt4o.py \
     --api-key "your-api-key" \
     --question ./eval_data_json/eval_example.jsonl \
     --output ./eval_data_json/output_gpt4o_eval_example.jsonl \

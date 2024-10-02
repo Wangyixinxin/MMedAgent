@@ -1,4 +1,5 @@
-python llava/eval/eval_multimodal_chat_gpt_score.py \
-    --question_input_path /home/jack/Projects/yixin-llm/LLaVA-Plus/llava/eval/single_agent_answer_gpt4-o2.jsonl \
-    --input_path /home/jack/Projects/yixin-llm/Rebuttal_Eval/qwen_ans.jsonl \
-    --output_path /home/jack/Projects/yixin-llm/Rebuttal_Eval/qwen_ans_gpt4.jsonl
+python llava/eval/eval_gpt4o.py \
+    --api-key "your-api-key" \
+    --question ./eval_data_json/eval_example.jsonl \
+    --output ./eval_data_json/output_gpt4o_eval_example.jsonl \
+    --max-tokens 1024
