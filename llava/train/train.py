@@ -116,6 +116,17 @@ class TrainingArguments(transformers.TrainingArguments):
     mm_projector_lr: Optional[float] = None
     group_by_modality_length: bool = field(default=False)
 
+class ConcatDatasetPlus(ConcatDataset):
+
+    @property
+    def modality_lengths(self):
+        length_list = []
+        for d in self.datasets:
+            length_list.extend(d.modality_lengths)
+
+        return length_list
+
+
 
 def maybe_zero_3(param, ignore_status=False, name=None):
     from deepspeed import zero
@@ -251,6 +262,33 @@ def smart_tokenizer_and_embedding_resize(
         output_embeddings[-num_new_tokens:] = output_embeddings_avg
 
 
+def make_supervised_data_module(tokenizer: transformers.PreTrainedTokenizer,
+                                data_args) -> Dict:
+    """Make dataset and collator for supervised fine-tuning."""
+    dataset_cls = LazySupervisedDataset
+
+
+    #  concat data files
+    data_path = data_args.data_path
+    data_path_list = [i.strip() for i in data_path.split(',')]
+    data_path_list = [x for x in data_path_list if x != ""]
+
+    data_set_list = []
+    for data_name in data_path_list:
+        assert os.path.exists(data_name), f"{data_name} does not exist"
+        new_data_args = copy.deepcopy(data_args)
+        new_data_args.data_path = data_name
+        train_dataset_i = build_dataset(new_data_args, tokenizer, dataset_cls)
+        data_set_list.append(train_dataset_i)
+    train_dataset = ConcatDatasetPlus(data_set_list)
+    print(f"train_dataset size: {len(train_dataset)}")
+
+
+    data_collator = DataCollatorForSupervisedDataset(tokenizer=tokenizer)
+    return dict(train_dataset=train_dataset,
+                eval_dataset=None,
+                data_collator=data_collator)
+
 def _tokenize_fn(strings: Sequence[str],
                  tokenizer: transformers.PreTrainedTokenizer) -> Dict:
     """Tokenize a list of strings."""
@@ -379,7 +417,7 @@ def preprocess_llama_2(
         total_len = int(target.ne(tokenizer.pad_token_id).sum())
 
         rounds = conversation.split(conv.sep2)
-        cur_len = 1
+        cur_len = 1 #modified
         target[:cur_len] = IGNORE_INDEX
         for i, rou in enumerate(rounds):
             if rou == "":
@@ -391,10 +429,10 @@ def preprocess_llama_2(
             parts[0] += sep
 
             if has_image:
-                round_len = len(tokenizer_image_token(rou, tokenizer))
+                round_len = len(tokenizer_image_token(rou, tokenizer)) 
                 instruction_len = len(tokenizer_image_token(parts[0], tokenizer)) - 2
             else:
-                round_len = len(tokenizer(rou).input_ids)
+                round_len = len(tokenizer(rou).input_ids) 
                 instruction_len = len(tokenizer(parts[0]).input_ids) - 2
 
             target[cur_len : cur_len + instruction_len] = IGNORE_INDEX
@@ -780,26 +818,26 @@ def build_dataset(data_args, tokenizer, dataset_cls):
     return train_dataset
 
 
-def make_supervised_data_module(tokenizer: transformers.PreTrainedTokenizer,
-                                data_args) -> Dict:
-    """Make dataset and collator for supervised fine-tuning."""
-    dataset_cls = LazySupervisedDataset
+# def make_supervised_data_module(tokenizer: transformers.PreTrainedTokenizer,
+#                                 data_args) -> Dict:
+#     """Make dataset and collator for supervised fine-tuning."""
+#     dataset_cls = LazySupervisedDataset
 
 
-    #  concat data files
-    data_path = data_args.data_path
-    data_path_list = [i.strip() for i in data_path.split(',')]
-    data_path_list = [x for x in data_path_list if x != ""]
+#     #  concat data files
+#     data_path = data_args.data_path
+#     data_path_list = [i.strip() for i in data_path.split(',')]
+#     data_path_list = [x for x in data_path_list if x != ""]
 
-    data_set_list = []
-    for data_name in data_path_list:
-        assert os.path.exists(data_name), f"{data_name} does not exist"
-        new_data_args = copy.deepcopy(data_args)
-        new_data_args.data_path = data_name
-        train_dataset_i = build_dataset(new_data_args, tokenizer, dataset_cls)
-        data_set_list.append(train_dataset_i)
-    train_dataset = ConcatDataset(data_set_list)
-    print(f"train_dataset size: {len(train_dataset)}")
+#     data_set_list = []
+#     for data_name in data_path_list:
+#         assert os.path.exists(data_name), f"{data_name} does not exist"
+#         new_data_args = copy.deepcopy(data_args)
+#         new_data_args.data_path = data_name
+#         train_dataset_i = build_dataset(new_data_args, tokenizer, dataset_cls)
+#         data_set_list.append(train_dataset_i)
+#     train_dataset = ConcatDataset(data_set_list)
+#     print(f"train_dataset size: {len(train_dataset)}")
 
 
 def train():
@@ -901,7 +939,7 @@ def train():
             cache_dir=training_args.cache_dir,
             model_max_length=training_args.model_max_length,
             padding_side="right",
-            use_fast=False,
+            use_fast=True,
         )
 
     if model_args.version == "v0":
