@@ -195,8 +195,10 @@ Please download the following segmentation dataset and follow xx.py to process a
   
 - Please save r2gcmn_mimic-cxr.pth and JFchexpert.pth in ChatCAD_R/weights/ and save annotation.json in ChatCAD_R/r2g/.
 
-
-2. Download Tools
+2. Download Grounding Dino Med Checkpoint
+- Please download the checkpoint from [Google Drive](https://drive.google.com/drive/folders/1eK27gz0tkbcp-9hx2fI9J_Wj2zHv14pL?usp=sharing).
+- Save groundingdinomed-checkpoint0005_slim.pth in [src/](src/)
+3. Download Tools
    
    - GroundingDINO
     ```
@@ -209,7 +211,7 @@ Please download the following segmentation dataset and follow xx.py to process a
     git clone https://github.com/bowang-lab/MedSAM.git
     ```
 
-3. Run the following commands in separate terminals:
+4. Run the following commands in separate terminals:
 
   - Launch controller
     ```
@@ -232,7 +234,7 @@ Please download the following segmentation dataset and follow xx.py to process a
     ```
     python llava/serve/gradio_web_server_mmedagent.py --controller http://localhost:20001 --model-list-mode reload
     ```
-4. You can now access the model in localhost:7860.
+5. You can now access the model in localhost:7860
    
 ## Citation
 If you find this paper or code useful for your research, please cite our paper:
