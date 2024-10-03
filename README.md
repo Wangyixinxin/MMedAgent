@@ -166,7 +166,9 @@ We build the first open-source instruction tuning dataset for multi-modal medica
 ### Tool dataset (Selected)
 
 #### Grounding task dataset
- 
+Please download the following segmentation dataset and follow xx.py to process all data into required data format.
+
+
 #### Segmentation task dataset
 [WORD](), [FLARE2021](), [BRATS](), [Montgomery County X-ray Set (MC)](), [VinDr-CXR](), and [Cellseg]()
 
