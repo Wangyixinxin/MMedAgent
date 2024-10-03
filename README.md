@@ -33,7 +33,7 @@ Binxu Li, Tiankai Yan, Yuanting Pan, Jie Luo, Ruiyang Ji, Jiayuan Ding, Zhe Xu, 
 
 
 ## Usage
-1. Clone this repo and navigate to xxx folder
+1. Clone this repo
 ```
 git clone https://github.com/Wangyixinxin/MMedAgent.git
 ```
