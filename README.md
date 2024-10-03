@@ -177,23 +177,23 @@ We build the first open-source instruction tuning dataset for multi-modal medica
 ## Web UI and serve
 1. Download ChatCAD Dependencies
 
-- Please download the dependent checkpoints and JSON files for both [ChatCAD_R](ChatCAD_R) and [MMedAgent/src/ChatCAD_R](MMedAgent/src/ChatCAD_R).
+- Please download the dependent checkpoints and JSON files for [src/ChatCAD_R](src/ChatCAD_R).
 
 - You can download from either the original ChatCAD [repo](https://github.com/zhaozh10/ChatCAD?tab=readme-ov-file) or from [Google Drive](https://drive.google.com/drive/folders/14OWwsFjphsjqT-nH9GHgf5Sy7f1aL9Lz?usp=sharing).
   
-- Please save r2gcmn_mimic-cxr.pth and JFchexpert.pth in ChatCAD_R/weights/ and save annotation.json in ChatCAD_R/.
+- Please save r2gcmn_mimic-cxr.pth and JFchexpert.pth in ChatCAD_R/weights/ and save annotation.json in ChatCAD_R/r2g/.
 
 
 2. Download Tools
    
    - GroundingDINO
     ```
-    cd MMedAgent/src
+    cd src
     git clone https://github.com/IDEA-Research/GroundingDINO.git
     ```
    - MedSAM
     ```
-    cd MMedAgent/src
+    cd src
     git clone https://github.com/bowang-lab/MedSAM.git
     ```
 
