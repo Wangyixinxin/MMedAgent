@@ -2,8 +2,9 @@
 A model worker executes the model.
 """
 import sys, os
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
-from ChatCAD_R.util import *
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src", "ChatCAD_R"))
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+from util import *
 
 import argparse
 import asyncio

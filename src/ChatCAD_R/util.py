@@ -1,6 +1,6 @@
 import sys, os
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
-from ChatCAD_R.chat_bot_RAG import gpt_bot 
+sys.path.append(os.path.dirname(__file__))
+from chat_bot_RAG import gpt_bot
 
 def initialize_chatbot(api_key=None):
     if api_key is None:

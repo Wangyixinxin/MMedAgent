@@ -1,14 +1,14 @@
 import sys, os
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
 import openai
 from transformers import pipeline
 import json
 from text2vec import SentenceModel
-from ChatCAD_R.cxr.prompt import prob2text,prob2text_zh
-from ChatCAD_R.r2g.report_generate import reportGen
-from ChatCAD_R.cxr.diagnosis import getJFImg,JFinfer,JFinit
-from ChatCAD_R.engine_LLM.api import answer_quest, query_range
-from ChatCAD_R.modality_identify import ModalityClip
+from cxr.prompt import prob2text,prob2text_zh
+from r2g.report_generate import reportGen
+from cxr.diagnosis import getJFImg,JFinfer,JFinit
+from engine_LLM.api import answer_quest, query_range
+from modality_identify import ModalityClip
+import requests
 
 
 fivedisease_zh={

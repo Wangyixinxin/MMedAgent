@@ -1,8 +1,0 @@
-{
-    "name":"mimic_try",
-    "data_path":"mimic_try.json",
-    "test_path":"mimic_test.json",
-    "vocabulary":[
-        "atelectasis","cardiomegaly","consolidation","edema","enlarged","cardiomediastinal","cardiomediastinum","fracture","lung","lesion","opacity","effusion","pleural","pneumonia","pneumothorax","support","devices"
-    ]
-}
