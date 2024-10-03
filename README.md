@@ -65,7 +65,7 @@ git clone https://huggingface.co/andy0207/mmedagent
 
 The model weights below are *delta* weights. The usage of LLaVA-Med checkpoints should comply with the base LLM's model license: [LLaMA](https://github.com/facebookresearch/llama/blob/main/MODEL_CARD.md).
 
-We provide delta weights for LLaVA-Med and 3 LLaVA-Med models each finetuned on the 3 VQA datasets:
+The delta weights for LLaVA-Med are provided. Download by the following instruction or see details via (LLaVA-Med)[https://github.com/microsoft/LLaVA-Med/tree/v1.0.0]
 
  Model Descriptions | Model Delta Weights | Size |
 | --- | --- | ---: |
