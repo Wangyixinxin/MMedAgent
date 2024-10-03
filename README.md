@@ -54,7 +54,12 @@ pip install flash-attn --no-build-isolation
 ## Model Download
 
 ### MMedAgent Checkpoint
-   TBA
+Model checkpoints (lora) and instruction are uploaded to huggingface: [https://huggingface.co/andy0207/mmedagent]
+Download the model and data by following:
+```
+git lfs install
+git clone https://huggingface.co/andy0207/mmedagent
+```
 
 ### Base Model Download
 
@@ -161,8 +166,13 @@ We build the first open-source instruction tuning dataset for multi-modal medica
 
 | Data | size |
 | --- | --- |
-| xxx | xx MiB | 
+| [instruction_all.json](https://huggingface.co/andy0207/mmedagent/tree/main/instruction_data) | 97.03 MiB | 
 
+Download the data by following:
+```
+git lfs install
+git clone https://huggingface.co/andy0207/mmedagent
+```
 ### Tool dataset (Selected)
 
 #### Grounding task dataset
