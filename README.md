@@ -55,6 +55,7 @@ pip install flash-attn --no-build-isolation
 
 ### MMedAgent Checkpoint
 Model checkpoints (lora) and instruction are uploaded to huggingface: [https://huggingface.co/andy0207/mmedagent]
+
 Download the model and data by following:
 ```
 git lfs install
