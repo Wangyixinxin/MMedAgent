@@ -49,7 +49,6 @@ pip install -e .
 ```
 pip install -e ".[train]"
 pip install flash-attn --no-build-isolation
-pip install deepspeed
 ```
 
 ## Model Download
@@ -120,7 +119,7 @@ deepspeed llava/train/train_mem.py \
 ```
 or use [`tuning.sh`](https://github.com/Wangyixinxin/MMedAgent/blob/main/tuning.sh)
 ## Evaluation
-### apply lora (if you enable lora when training)
+### Apply lora (if you enable lora during training)
 ```
 CUDA_VISIBLE_DEVICES=0 python scripts/merge_lora_weights.py \
     --model-path ./checkpoints/output_lora_weights \
@@ -147,7 +146,8 @@ python llava/eval/eval_gpt4o.py \
     --max-tokens 1024
 ```
 or use [`eval_gpt4o.sh`](https://github.com/Wangyixinxin/MMedAgent/blob/main/eval_gpt4o.sh)
-### GPT-4 evalution
+### GPT-4 evaluation
+All the outputs will be assessed by GPT-4 and rated on a scale from 1 to 10 based on their helpfulness, relevance, accuracy, and level of details. Check our paper for detailed evaluation.
 ```
 python ./llava/eval/eval_multimodal_chat_gpt_score.py \
     --question_input_path ./eval_data_json/eval_example.jsonl \
