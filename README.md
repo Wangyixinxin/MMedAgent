@@ -181,8 +181,8 @@ Please download the following segmentation dataset and refer to the following co
 ```
 python data_processing/path_writing.py
 python data_processing/dataset_loading.py
-combine.ipynb
 ```
+Then refer to combine.ipynb to process all image id to be aligned with our instruction-tuning dataset.
 
 #### Segmentation task dataset
 [WORD](https://arxiv.org/pdf/2111.02403
