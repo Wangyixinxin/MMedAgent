@@ -45,7 +45,7 @@ conda activate mmedagent
 pip install --upgrade pip  # enable PEP 660 support
 pip install -e .
 ```
-3. Additional package for training
+3. Additional packages required for training
 ```
 pip install -e ".[train]"
 pip install flash-attn --no-build-isolation
