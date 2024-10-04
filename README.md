@@ -177,11 +177,14 @@ git clone https://huggingface.co/andy0207/mmedagent
 ### Tool dataset (Selected)
 
 #### Grounding task dataset
-Please download the following segmentation dataset and follow xx.py to process all data into required data format.
-
+Please download the following segmentation dataset run the following command to process all data into required data format.
+TBD
 
 #### Segmentation task dataset
-[WORD](), [FLARE2021](), [BRATS](), [Montgomery County X-ray Set (MC)](), [VinDr-CXR](), and [Cellseg]()
+[WORD](https://arxiv.org/pdf/2111.02403
+), [FLARE2021](https://flare22.grand-challenge.org/
+), [BRATS](https://www.kaggle.com/datasets/awsaf49/brats2020-training-data), [Montgomery County X-ray Set (MC)](), [VinDr-CXR](https://vindr.ai/datasets/cxr
+), and [Cellseg](https://zenodo.org/records/10719375)
 
 #### Classification, VQA task dataset
 [PMC article 60K-IM](https://hanoverprod.z21.web.core.windows.net/med_llava/instruct/llava_med_instruct_60k_inline_mention.json)
