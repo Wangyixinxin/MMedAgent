@@ -178,7 +178,10 @@ git clone https://huggingface.co/andy0207/mmedagent
 
 #### Grounding task dataset
 Please download the following segmentation dataset run the following command to process all data into required data format.
-TBD
+path_writing.py is to write paths for nii file of images and labels into image.txt and label.txt
+dataset_loading.py, with stores image.txt and label.txt, is to store jpg format images into a folder, with instances.json file storing the information of images and coodinates of grounding boxes
+data_process_func is the helper function from https://github.com/openmedlab/MedLSAM
+When use it, please modify the path in the files.
 
 #### Segmentation task dataset
 [WORD](https://arxiv.org/pdf/2111.02403
