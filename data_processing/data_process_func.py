@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# This file comes from MedLSAM: https://github.com/openmedlab/MedLSAM
 import os
 import nibabel
 import numpy as np
