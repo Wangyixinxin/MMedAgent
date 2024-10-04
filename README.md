@@ -54,7 +54,7 @@ pip install flash-attn --no-build-isolation
 ## Model Download
 
 ### MMedAgent Checkpoint
-Model checkpoints (lora) and instruction are uploaded to huggingface: [https://huggingface.co/andy0207/mmedagent]
+Model checkpoints (lora) and instruction-tuning data can be downloaded [here](https://huggingface.co/andy0207/mmedagent/tree/main)
 
 Download the model and data by following:
 ```
@@ -66,7 +66,7 @@ git clone https://huggingface.co/andy0207/mmedagent
 
 The model weights below are *delta* weights. The usage of LLaVA-Med checkpoints should comply with the base LLM's model license: [LLaMA](https://github.com/facebookresearch/llama/blob/main/MODEL_CARD.md).
 
-The delta weights for LLaVA-Med are provided. Download by the following instruction or see details via (LLaVA-Med)[https://github.com/microsoft/LLaVA-Med/tree/v1.0.0]
+The delta weights for LLaVA-Med are provided. Please download following the below instructions or see details in (LLaVA-Med)[https://github.com/microsoft/LLaVA-Med/tree/v1.0.0]
 
  Model Descriptions | Model Delta Weights | Size |
 | --- | --- | ---: |
@@ -74,7 +74,7 @@ The delta weights for LLaVA-Med are provided. Download by the following instruct
 
 Instructions:
 
-1. Download the delta weights above and unzip.
+1. Download the delta weights above and unzip the files.
 1. Get the original LLaMA weights in the huggingface format by following the instructions [here](https://huggingface.co/docs/transformers/main/model_doc/llama).
 1. Use the following scripts to get original LLaVA-Med weights by applying our delta. In the script below, set the --delta argument to the path of the unzipped delta weights directory from step 1.
 
@@ -85,7 +85,7 @@ python3 -m llava.model.apply_delta \
     --delta /path/to/llava_med_delta_weights
 ```
 ## Train
-train with lora:
+Training with lora:
 ```
 deepspeed llava/train/train_mem.py \
     --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 2e-5 \
@@ -169,7 +169,7 @@ We build the first open-source instruction tuning dataset for multi-modal medica
 | --- | --- |
 | [instruction_all.json](https://huggingface.co/andy0207/mmedagent/tree/main/instruction_data) | 97.03 MiB | 
 
-Download the data by following:
+Download the data by:
 ```
 git lfs install
 git clone https://huggingface.co/andy0207/mmedagent
@@ -177,15 +177,11 @@ git clone https://huggingface.co/andy0207/mmedagent
 ### Tool dataset (Selected)
 
 #### Grounding task dataset
-Please download the following segmentation dataset run the following command to process all data into required data format.
-
-path_writing.py is to write paths for nii file of images and labels into image.txt and label.txt
-
-dataset_loading.py, with stores image.txt and label.txt, is to store jpg format images into a folder, with instances.json file storing the information of images and coodinates of grounding boxes
-
-data_process_func is the helper function from https://github.com/openmedlab/MedLSAM
-
-When use it, please modify the path in the files.
+Please download the following segmentation dataset and refer to the following codes to process the data into required data format for grounding task.
+```
+python data_processing/path_writing.py
+python data_processing/dataset_loading.py
+```
 
 #### Segmentation task dataset
 [WORD](https://arxiv.org/pdf/2111.02403
