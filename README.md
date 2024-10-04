@@ -182,7 +182,6 @@ Please download the following segmentation dataset and refer to the following co
 python data_processing/path_writing.py
 python data_processing/dataset_loading.py
 ```
-Then refer to combine.ipynb to process all image id to be aligned with our instruction-tuning dataset.
 
 #### Segmentation task dataset
 [WORD](https://arxiv.org/pdf/2111.02403
@@ -194,7 +193,7 @@ Then refer to combine.ipynb to process all image id to be aligned with our instr
 [PMC article 60K-IM](https://hanoverprod.z21.web.core.windows.net/med_llava/instruct/llava_med_instruct_60k_inline_mention.json)
 
 #### Compile dataset
-After downloading and processing the necessary datasets, please refer to [combine.ipynb](data_processing/combine.ipynb) for data ID compiling.
+After downloading and processing the necessary datasets, please refer to [combine.ipynb](data_processing/combine.ipynb) for data ID compiling, ensuring the image id to be aligned with our instruction-tuning dataset.
 
 ## Web UI and serve
 1. Download ChatCAD Dependencies
