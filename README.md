@@ -195,7 +195,7 @@ python data_processing/dataset_loading.py
 #### Compile dataset
 After downloading and processing the necessary datasets, please refer to [combine.ipynb](data_processing/combine.ipynb) for data ID compiling, ensuring the image id to be aligned with our instruction-tuning dataset.
 
-## Web UI and serve
+## Build Web UI and server
 1. Download ChatCAD Dependencies
 
 - Please download the dependent checkpoints and JSON files for [src/ChatCAD_R](src/ChatCAD_R).
