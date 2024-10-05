@@ -6,7 +6,7 @@
 The first multimodal medical AI Agent incorporating a wide spectrum of tools to handle various medical
 tasks across different modalities seamlessly.
 
-[[Paper, EMNLP 2024 (Findings)](https://arxiv.org/abs/2407.02483)] [[Demo](https://1cc0bf26516bc745fd.gradio.live/)  (*NOTE: This is a temporary link. Please follow [Web UI Inference](https://github.com/Wangyixinxin/MMedAgent?tab=readme-ov-file#web-ui-and-serve) to build the server. *)]
+[[Paper, EMNLP 2024 (Findings)](https://arxiv.org/abs/2407.02483)] [[Demo](https://1cc0bf26516bc745fd.gradio.live/)  (*NOTE: This is a temporary link. Please follow [Web UI Inference](https://github.com/Wangyixinxin/MMedAgent?tab=readme-ov-file#build-web-ui-and-server) to build the server. *)]
 
 Binxu Li, Tiankai Yan, Yuanting Pan, Jie Luo, Ruiyang Ji, Jiayuan Ding, Zhe Xu, Shilong Liu, Haoyu Dong*, Zihao Lin*, Yixin Wang* 
 
