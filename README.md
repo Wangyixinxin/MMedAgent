@@ -205,9 +205,11 @@ After downloading and processing the necessary datasets, please refer to [combin
   
 - Please save r2gcmn_mimic-cxr.pth and JFchexpert.pth in ChatCAD_R/weights/ and save annotation.json in ChatCAD_R/r2g/.
 
-2. Download Grounding Dino Med Checkpoint
-- Please download the checkpoint from [Google Drive](https://drive.google.com/drive/folders/1eK27gz0tkbcp-9hx2fI9J_Wj2zHv14pL?usp=sharing).
-- Save groundingdinomed-checkpoint0005_slim.pth in [src/](src/)
+2. Download Tool Checkpoints
+- Download groundingdinomed checkpoint from [Google Drive](https://drive.google.com/drive/folders/1eK27gz0tkbcp-9hx2fI9J_Wj2zHv14pL?usp=sharing).
+- Save *groundingdinomed-checkpoint0005_slim.pth* in [src/](src/)
+- Download MedSAM checkpoint *medsam_vit_b.pth* from [Google Drive](https://drive.google.com/drive/folders/1ETWmi4AiniJeWOt6HAsYgTjYv_fkgzoN).
+- Save *medsam_vit_b.pth* in [src/](src/)
 3. Download Tools and Dependending Packages
    
    - GroundingDINO
@@ -228,6 +230,7 @@ After downloading and processing the necessary datasets, please refer to [combin
     ```
     pip install -r src/ChatCAD_R/requirements.txt
     ```
+   - Replace src/MedSAM/segment_anything/build_sam.py by [this build_sam.py](src/build_sam.py) which uses vit_b version.
 
 4. Run the following commands in separate terminals:
 
