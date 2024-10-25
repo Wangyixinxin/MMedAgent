@@ -2,17 +2,14 @@
 A model worker executes the model.
 """
 import sys, os
-from groundingdino.util import box_ops
 
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src", "MedSAM"))
 from segment_anything import build_sam
 from segment_anything.predictor import SamPredictor
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 import argparse
 import asyncio
-import dataclasses
-import logging
-import json
 import os
 import sys
 import time
@@ -28,11 +25,6 @@ from fastapi.responses import StreamingResponse, JSONResponse
 import numpy as np
 import requests
 from PIL import Image
-
-from demo.inference_on_a_image import get_grounding_output
-
-from groundingdino.util.inference import load_model, predict
-import groundingdino.datasets.transforms as T
 import pycocotools.mask as mask_util
 
 
@@ -397,7 +389,7 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--sam-path", type=str, default="/home/jack/Projects/yixin-llm/yixin-llm-data/yptests/LLaVA-Plus/src/MedSAM/medsam_vit_b.pth"
+        "--sam-path", type=str, default="src/medsam_vit_b.pth"
     )
     parser.add_argument(
         "--model-names",

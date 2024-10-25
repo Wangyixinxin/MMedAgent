@@ -2,11 +2,13 @@
 A model worker executes the model.
 """
 import sys, os
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src", "GroundingDINO"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src", "MedSAM"))
 from groundingdino.util import box_ops
 
 from segment_anything import build_sam
 from segment_anything.predictor import SamPredictor
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 import argparse
 import asyncio
@@ -413,13 +415,13 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--model-path", type=str, default="groundingdinomed-checkpoint0005_slim.pth"
+        "--model-path", type=str, default="src/groundingdinomed-checkpoint0005_slim.pth"
     )
     parser.add_argument(
-        "--model-config", type=str, default="/home/jack/Projects/yixin-llm/yixin-llm-data/yptests/LLaVA-Plus/src/groundingdino/groundingdino/config/GroundingDINO_SwinT_OGC.py"
+        "--model-config", type=str, default="src/groundingdino/groundingdino/config/GroundingDINO_SwinT_OGC.py"
     )
     parser.add_argument(
-        "--sam-path", type=str, default="/home/jack/Projects/yixin-llm/yixin-llm-data/yptests/LLaVA-Plus/src/MedSAM/medsam_vit_b.pth"
+        "--sam-path", type=str, default="src/medsam_vit_b.pth"
     )
     parser.add_argument(
         "--model-names",

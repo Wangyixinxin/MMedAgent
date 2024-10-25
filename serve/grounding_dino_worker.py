@@ -3,8 +3,9 @@ A model worker executes the model.
 """
 import sys, os
 
-from groundingdino.util import box_ops
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src", "GroundingDINO"))
+from groundingdino.util import box_ops
 
 import argparse
 import asyncio
@@ -28,7 +29,6 @@ import numpy as np
 import requests
 from PIL import Image
 
-from demo.inference_on_a_image import get_grounding_output
 
 from groundingdino.util.inference import load_model, predict
 import groundingdino.datasets.transforms as T

@@ -215,14 +215,14 @@ After downloading and processing the necessary datasets, please refer to [combin
     cd src
     git clone https://github.com/IDEA-Research/GroundingDINO.git
     cd GroundingDINO
-    pip install .
+    pip install -e .
     ```
    - MedSAM
     ```
     cd src
     git clone https://github.com/bowang-lab/MedSAM.git
     cd MedSAM
-    pip install .
+    pip install -e .
     ```
    - ChatCAD_R
     ```
