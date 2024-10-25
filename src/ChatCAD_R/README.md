@@ -18,4 +18,4 @@ The scripts to generate thinking chain conversation JSON files of the three func
 2. [RAG_gen_imgreport_1.py](RAG_gen_imgreport_1.py) and [RAG_gen_imgreport_2.py](RAG_gen_imgreport_2.py)
 3. [RAG_gen_textreport.py](RAG_gen_textreport.py)
 
-* If proxy is needed to access GPT from certain regions, refer to comments and edit correspondingly in [chat_bot_RAG.py](chat_bot_RAG.py) and [engine_LLM\api.py]([engine_LLM\api.py]).
+*If proxy is needed to access GPT from certain regions, refer to comments and edit correspondingly in [chat_bot_RAG.py](chat_bot_RAG.py) and [engine_LLM\api.py](engine_LLM/api.py).*
