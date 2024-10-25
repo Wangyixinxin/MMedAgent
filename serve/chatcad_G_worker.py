@@ -44,6 +44,9 @@ global_counter = 0
 
 model_semaphore = None
 
+# If building your own server, you can initialize chatbot in advance to acclerate inference speed on server
+# chatbot = initialize_chatbot("")  # put your api key
+chatbot = None
 
 def heart_beat_worker(controller):
     while True:
@@ -149,7 +152,7 @@ class ModelWorker:
     def generate_stream_func(self, params):
         image_path = params["image"]
         image = self.load_image(image_path)
-        report = MRG(image, api_key=params["openai_key"]) 
+        report = MRG(image, api_key=params["openai_key"],chatbot=chatbot) 
 
         return report
 

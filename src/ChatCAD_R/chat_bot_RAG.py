@@ -268,6 +268,7 @@ class gpt_bot(base_bot):
                 response = refined_message
                 response +="\nNote: Failed to retrieve relavant information from the Merck Manual Professional Edition. Please adopt with caution."
                 message=response
+                knowledge = None
             else:
                 query,knowledge=ret
                 knowledge=knowledge.replace("\n\n","\n")

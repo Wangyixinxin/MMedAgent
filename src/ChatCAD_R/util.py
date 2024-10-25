@@ -25,14 +25,16 @@ def concat_history(message_history:list)->str:
         ret+=f"{event['role']}: {event['content']}\n"
     return ret
 
-def MRG(image, api_key=None):
+def MRG(image, api_key=None, chatbot=None):
     # get image input and generate medical report, using original chatcad
-    chatbot = initialize_chatbot(api_key)
+    if not chatbot:
+        chatbot = initialize_chatbot(api_key)
     response, modality = chatbot.report_zh(image)
     return response
 
-def RAG(report, api_key=None):
-    chatbot = initialize_chatbot(api_key)
+def RAG(report, api_key=None, chatbot=None):
+    if not chatbot:
+        chatbot = initialize_chatbot(api_key)
     message_history = [{"role": "user", "content": report}]
     ref_record=concat_history(message_history)
     ans = chatbot.chat("", ref_record)

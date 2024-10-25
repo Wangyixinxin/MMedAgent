@@ -1,10 +1,10 @@
-from curses import KEY_LEFT
 import os
 import json
 import pickle as pkl
 import numpy as np
-from tqdm import tqdm
-
+import time
+import openai
+from typing import List, Optional
 
 
 def get_rules():
@@ -73,78 +73,152 @@ def list2str(word_list:list):
     return ret
     
 
-from tkinter import N
-from revChatGPT.V3 import Chatbot
-from revChatGPT.typings import ChatbotError
-import time
+class ProxyEnvironment:
+    def __init__(self, http_proxy, https_proxy):
+        self.http_proxy = http_proxy
+        self.https_proxy = https_proxy
+        self.old_http_proxy = None
+        self.old_https_proxy = None
+
+    def __enter__(self):
+        self.old_http_proxy = os.getenv("HTTP_PROXY")
+        self.old_https_proxy = os.getenv("HTTPS_PROXY")
+        
+        os.environ["HTTP_PROXY"] = self.http_proxy
+        os.environ["HTTPS_PROXY"] = self.https_proxy
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if self.old_http_proxy is not None:
+            os.environ["HTTP_PROXY"] = self.old_http_proxy
+        else:
+            os.environ.pop("HTTP_PROXY", None)
+        
+        if self.old_https_proxy is not None:
+            os.environ["HTTPS_PROXY"] = self.old_https_proxy
+        else:
+            os.environ.pop("HTTPS_PROXY", None)
 
 class Chat_api:
-    def __init__(self,api_key,proxy=None,verbose=False):
-        self.api_key=api_key
-        # if proxy:
-        #     os.environ["http_proxy"] = proxy
-        #     os.environ["all_proxy"] = proxy
-        
-        self.chatbot = Chatbot(api_key=api_key,proxy=proxy)
-        # self.chatbot = Chatbot(api_key=api_key,proxy='http://127.0.0.1:7890')
-        # for data in chatbot.ask_stream("Hello world"):
-            # print(data, end="", flush=True)
-        self.now_query=""
-        self.now_res=""
-        self.verbose=verbose
-        
-    def prompt(self,query,**kwargs):
-        query=format_query(query,**kwargs)
-        self.now_query=query
-        if self.verbose:
-            print("Human:\n",query,flush=True)
-    
-    def get_res(self,max_connection_try=5,fail_sleep_time=10):
-        res=None
-        for i in range(max_connection_try):
-            try:
-                res=self.chatbot.ask(self.now_query)
-                break
-            except ChatbotError:
-                # print("Warn: openAI Connection Error! Try again!")
-                time.sleep(fail_sleep_time)
-        if self.verbose:
-            print("ChatGPT:\n",res,flush=True)
-            print()
-        self.now_res=res
-        return res
-    
-    def get_choice_res(self,possible_res,max_false_time=5):
-        ''' Give several choice for Chatgpt
-        '''
-        # res=input()
-        possible_res=[format_query(q) for q in possible_res]
+    def __init__(self, api_key: str, proxy: Optional[str] = None, verbose: bool = False, model: str = "gpt-4o"):
+        """
+        Initialize the ChatApi with OpenAI API key, optional proxy, verbosity, and model selection.
 
-        def check_res(res:str,possible_res:list):
-            commas=",，.。'‘’/、\\:：\"“”?？!！;；`·~@#$%^&*()_+-=<>[]{}|"
-            for c in commas:
-                res=res.replace(c,' ')
-            res_tks=res.split()
-            for p in possible_res:
-                if p in res_tks: return p
+        :param api_key: OpenAI API key.
+        :param proxy: Optional proxy URL.
+        :param verbose: If True, print prompts and responses.
+        :param model: The OpenAI model to use (e.g., "gpt-4", "gpt-3.5-turbo").
+        """
+        self.api_key = api_key
+        self.verbose = verbose
+        self.model = model
+        self.now_query = ""
+        self.now_res = ""
+        self.messages = []  # To keep track of the conversation
+
+        openai.api_key = self.api_key
+
+        # Configure proxy if provided
+        self.proxy = proxy
+
+    def prompt(self, query: str, **kwargs):
+        """
+        Format and store the current query.
+
+        :param query: The user's input query.
+        :param kwargs: Additional keyword arguments for formatting.
+        """
+        formatted_query = format_query(query, **kwargs)
+        self.now_query = formatted_query
+        self.messages.append({"role": "user", "content": self.now_query})
+        if self.verbose:
+            print("Human:\n", self.now_query, flush=True)
+
+    def get_res(self, max_connection_try: int = 5, fail_sleep_time: int = 10) -> Optional[str]:
+        """
+        Send the current query to OpenAI and retrieve the response with retry logic.
+
+        :param max_connection_try: Maximum number of retry attempts.
+        :param fail_sleep_time: Seconds to wait before retrying after a failure.
+        :return: The response from ChatGPT or None if failed.
+        """
+        attempt = 0
+        while attempt < max_connection_try:
+            try:
+                if self.proxy:
+                    with ProxyEnvironment(self.proxy, self.proxy):
+                        response = openai.ChatCompletion.create(
+                            model=self.model,
+                            messages=self.messages
+                        )
+                else:
+                    response = openai.ChatCompletion.create(
+                            model=self.model,
+                            messages=self.messages
+                        )
+                reply = response.choices[0].message.content.strip()
+                self.now_res = reply
+                self.messages.append({"role": "assistant", "content": self.now_res})
+                if self.verbose:
+                    print("ChatGPT:\n", self.now_res, flush=True)
+                    print()
+                return self.now_res
+            except openai.error.OpenAIError as e:
+                attempt += 1
+                if self.verbose:
+                    print(f"Warning: OpenAI Connection Error (Attempt {attempt}/{max_connection_try}): {e}")
+                if attempt < max_connection_try:
+                    time.sleep(fail_sleep_time)
+                else:
+                    print("Error: Failed to get response from OpenAI after multiple attempts.")
+                    return None
+
+    def get_choice_res(self, possible_res: List[str], max_false_time: int = 5) -> Optional[str]:
+        """
+        Provide several choices to ChatGPT and select one based on the response.
+
+        :param possible_res: A list of possible response choices.
+        :param max_false_time: Maximum number of attempts to get a valid choice.
+        :return: The selected response choice or None if not found.
+        """
+        possible_res_formatted = [format_query(q) for q in possible_res]
+
+        def check_res(res: str, possible_res_list: List[str]) -> Optional[str]:
+            """
+            Check if any of the possible responses are present in the response.
+
+            :param res: The response string from ChatGPT.
+            :param possible_res_list: List of possible valid responses.
+            :return: The matched response or None.
+            """
+            punctuation = ",，.。'‘’/、\\:：\"“”?？!！;；`·~@#$%^&*()_+-=<>[]{}|"
+            translator = str.maketrans(punctuation, ' ' * len(punctuation))
+            res_clean = res.translate(translator)
+            res_tokens = res_clean.split()
+
+            for option in possible_res_list:
+                if option in res_tokens:
+                    return option
             return None
 
-        for i in range(max_false_time):
-            self.now_res=self.get_res()
-            res_choice=check_res(self.now_res,possible_res)
-            if res_choice: 
+        for attempt in range(max_false_time):
+            response = self.get_res()
+            if response is None:
+                continue  # Skip to the next attempt if response failed
+            selected_choice = check_res(response, possible_res_formatted)
+            if selected_choice:
                 if self.verbose:
-                    # print("ChatGPT:\n",self.now_res,flush=True)
-                    print("Choice of ChatGPT:",res_choice)
+                    print("Choice of ChatGPT:", selected_choice)
                     print(flush=True)
-                return res_choice
-            self.chatbot.rollback(2)
-        # print("Warn: ChatGPT didn't give a possible response!")
+                return selected_choice
+            if len(self.messages) >= 2:
+                self.messages.pop()
+                if self.verbose:
+                    print("Rolled back the last assistant response due to invalid choice.", flush=True)
+        if self.verbose:
+            print("Warning: ChatGPT didn't provide a valid response from the possible choices.", flush=True)
         return None
 
 
-
-import json,types
 def answer_quest(quest: str,api_key: str,topic_base_dict: list):#,topic):
     global_rules['quest']=quest
 

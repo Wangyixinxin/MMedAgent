@@ -243,7 +243,7 @@ def change_debug_state(state, with_debug_parameter_from_state, request: gr.Reque
     with_debug_parameter_from_state = not with_debug_parameter_from_state
 
     # modify the text on debug_btn
-    debug_btn_value = "🈚 Progress (off)" if not with_debug_parameter_from_state else "🈶 Progress (on)"
+    debug_btn_value = "Show Progress" if not with_debug_parameter_from_state else "Hide Progress"
 
     debug_btn_update = gr.Button.update(
         value=debug_btn_value,
@@ -779,10 +779,10 @@ def build_demo(embed_mode):
                         submit_btn = gr.Button(value="Submit", visible=False)
                 with gr.Row(visible=False) as button_row:
                     debug_btn = gr.Button(
-                        value="🈚  Show Progress (off)", interactive=True)
+                        value="Show Progress", interactive=True)
                     # import ipdb; ipdb.set_trace()
                 if args.with_debug_parameter:
-                    debug_btn.value = "🈶 Show Progress (on)"
+                    debug_btn.value = "Show Progress"
                 with_debug_parameter_state = gr.State(
                     value=args.with_debug_parameter,
                 )
