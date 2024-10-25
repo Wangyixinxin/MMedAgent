@@ -75,8 +75,8 @@ The delta weights for LLaVA-Med are provided. Please download following the belo
 Instructions:
 
 1. Download the delta weights above and unzip the files.
-1. Get the original LLaMA weights in the huggingface format by following the instructions [here](https://huggingface.co/docs/transformers/main/model_doc/llama).
-1. Use the following scripts to get original LLaVA-Med weights by applying our delta. In the script below, set the --delta argument to the path of the unzipped delta weights directory from step 1.
+1. Download the original LLaMA weights (llama-7b in our model) in the huggingface format by following the instructions [here](https://huggingface.co/docs/transformers/main/model_doc/llama).
+1. Use the following scripts to get original LLaVA-Med (LLaVA-Med 7b in our model) weights by applying the above delta weights. In the script below, set the --delta argument to the path of the unzipped delta weights directory from step 1 and --target as the output folder.
 
 ```bash
 python3 -m llava.model.apply_delta \
@@ -102,7 +102,7 @@ deepspeed llava/train/train_mem.py \
     --image_aspect_ratio pad \
     --group_by_modality_length False \
     --bf16 True \
-    --output_dir ./checkpoints/output_lora_weights \
+    --output_dir ./checkpoints/final_model_lora \
     --num_train_epochs 30 \
     --per_device_train_batch_size 12 \
     --per_device_eval_batch_size 1 \
@@ -126,9 +126,10 @@ deepspeed llava/train/train_mem.py \
 or use [`tuning.sh`](https://github.com/Wangyixinxin/MMedAgent/blob/main/tuning.sh)
 ## Evaluation
 ### Apply lora (if you enable lora during training)
+Download the MMedAgent checkpoints (lora) [here](https://huggingface.co/andy0207/mmedagent/tree/main/final_model_lora) and set --model-path as this folder.
 ```
 CUDA_VISIBLE_DEVICES=0 python scripts/merge_lora_weights.py \
-    --model-path ./checkpoints/output_lora_weights \
+    --model-path ./checkpoints/final_model_lora \
     --model-base ./base_model \
     --save-model-path ./llava_med_agent
 ```
