@@ -208,17 +208,25 @@ After downloading and processing the necessary datasets, please refer to [combin
 2. Download Grounding Dino Med Checkpoint
 - Please download the checkpoint from [Google Drive](https://drive.google.com/drive/folders/1eK27gz0tkbcp-9hx2fI9J_Wj2zHv14pL?usp=sharing).
 - Save groundingdinomed-checkpoint0005_slim.pth in [src/](src/)
-3. Download Tools
+3. Download Tools and Dependending Packages
    
    - GroundingDINO
     ```
     cd src
     git clone https://github.com/IDEA-Research/GroundingDINO.git
+    cd GroundingDINO
+    pip install .
     ```
    - MedSAM
     ```
     cd src
     git clone https://github.com/bowang-lab/MedSAM.git
+    cd MedSAM
+    pip install .
+    ```
+   - ChatCAD_R
+    ```
+    pip install -r src/ChatCAD_R/requirements.txt
     ```
 
 4. Run the following commands in separate terminals:
