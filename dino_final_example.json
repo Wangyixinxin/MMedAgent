@@ -1,0 +1,869 @@
+[
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/333_081_flair.jpg",
+        "boxes": [
+            [
+                0.5,
+                0.49,
+                0.85,
+                0.75
+            ]
+        ],
+        "logits": [
+            0.986579954624176
+        ],
+        "phrases": [
+            "tumor"
+        ]
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/122_084_t2.jpg",
+        "boxes": [
+            [
+                0.49,
+                0.62,
+                0.64,
+                0.77
+            ]
+        ],
+        "logits": [
+            0.7179103493690491
+        ],
+        "phrases": [
+            "tumor"
+        ]
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/351_080_t2.jpg",
+        "boxes": [
+            [
+                0.41,
+                0.53,
+                0.7,
+                0.73
+            ]
+        ],
+        "logits": [
+            0.9111372232437134
+        ],
+        "phrases": [
+            "tumor"
+        ]
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Head of femur. Bladder.",
+        "category": "word",
+        "image_path": "./grounding_dino_test/word/image/0072_0290.jpg",
+        "boxes": [
+            [
+                0.31,
+                0.52,
+                0.41,
+                0.66
+            ],
+            [
+                0.57,
+                0.54,
+                0.69,
+                0.64
+            ],
+            [
+                0.66,
+                0.42,
+                0.73,
+                0.6
+            ],
+            [
+                0.26,
+                0.41,
+                0.36,
+                0.63
+            ]
+        ],
+        "logits": [
+            0.958662211894989,
+            0.9533359408378601,
+            0.8956487774848938,
+            0.662603497505188
+        ],
+        "phrases": [
+            "kidney",
+            "kidney",
+            "spleen",
+            "liver"
+        ]
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/346_082_flair.jpg",
+        "boxes": [
+            [
+                0.49,
+                0.36,
+                0.68,
+                0.5
+            ]
+        ],
+        "logits": [
+            0.5166545510292053
+        ],
+        "phrases": [
+            "tumor"
+        ]
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/013_085_t1ce.jpg",
+        "boxes": [
+            [
+                0.51,
+                0.45,
+                0.72,
+                0.66
+            ]
+        ],
+        "logits": [
+            0.746836245059967
+        ],
+        "phrases": [
+            "tumor"
+        ]
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/171_080_t1.jpg",
+        "boxes": [
+            [
+                0.26,
+                0.28,
+                0.58,
+                0.57
+            ]
+        ],
+        "logits": [
+            0.9205141663551331
+        ],
+        "phrases": [
+            "tumor"
+        ]
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Intestine. Adrenal.",
+        "category": "word",
+        "image_path": "./grounding_dino_test/word/image/0055_0004.jpg",
+        "boxes": [],
+        "logits": [],
+        "phrases": []
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Gallbladder. Adrenal.",
+        "category": "word",
+        "image_path": "./grounding_dino_test/word/image/0028_0057.jpg",
+        "boxes": [],
+        "logits": [],
+        "phrases": []
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Esophagus. Adrenal Gland.",
+        "category": "flare",
+        "image_path": "./grounding_dino_test/flare/image/0022_0049.jpg",
+        "boxes": [
+            [
+                0.25,
+                0.57,
+                0.34,
+                0.65
+            ],
+            [
+                0.64,
+                0.5,
+                0.72,
+                0.59
+            ]
+        ],
+        "logits": [
+            0.8375855684280396,
+            0.8345173001289368
+        ],
+        "phrases": [
+            "kidney",
+            "kidney"
+        ]
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/006_083_flair.jpg",
+        "boxes": [
+            [
+                0.22,
+                0.49,
+                0.56,
+                0.72
+            ]
+        ],
+        "logits": [
+            0.9920673370361328
+        ],
+        "phrases": [
+            "tumor"
+        ]
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Esophagus. Head of femur.",
+        "category": "word",
+        "image_path": "./grounding_dino_test/word/image/0046_0148.jpg",
+        "boxes": [
+            [
+                0.52,
+                0.46,
+                0.71,
+                0.66
+            ],
+            [
+                0.21,
+                0.34,
+                0.54,
+                0.65
+            ],
+            [
+                0.5,
+                0.35,
+                0.66,
+                0.52
+            ]
+        ],
+        "logits": [
+            0.9308947324752808,
+            0.9658262729644775,
+            0.7589689493179321
+        ],
+        "phrases": [
+            "spleen",
+            "liver",
+            "stomach"
+        ]
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/111_085_t1ce.jpg",
+        "boxes": [],
+        "logits": [],
+        "phrases": []
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Esophagus. Rectum.",
+        "category": "word",
+        "image_path": "./grounding_dino_test/word/image/0006_0124.jpg",
+        "boxes": [
+            [
+                0.3,
+                0.48,
+                0.39,
+                0.58
+            ],
+            [
+                0.58,
+                0.48,
+                0.68,
+                0.58
+            ],
+            [
+                0.24,
+                0.48,
+                0.28,
+                0.54
+            ]
+        ],
+        "logits": [
+            0.9295174479484558,
+            0.9343914985656738,
+            0.618647038936615
+        ],
+        "phrases": [
+            "kidney",
+            "kidney",
+            "liver"
+        ]
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/157_079_flair.jpg",
+        "boxes": [],
+        "logits": [],
+        "phrases": []
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Head of femur. Pancreas.",
+        "category": "word",
+        "image_path": "./grounding_dino_test/word/image/0043_0129.jpg",
+        "boxes": [
+            [
+                0.58,
+                0.51,
+                0.73,
+                0.63
+            ],
+            [
+                0.31,
+                0.52,
+                0.45,
+                0.63
+            ],
+            [
+                0.25,
+                0.44,
+                0.31,
+                0.59
+            ],
+            [
+                0.41,
+                0.44,
+                0.5,
+                0.5
+            ]
+        ],
+        "logits": [
+            0.8862673044204712,
+            0.8615782260894775,
+            0.7828138470649719,
+            0.38709038496017456
+        ],
+        "phrases": [
+            "kidney",
+            "kidney",
+            "liver",
+            "pancreas"
+        ]
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/278_084_t2.jpg",
+        "boxes": [
+            [
+                0.52,
+                0.27,
+                0.82,
+                0.45
+            ]
+        ],
+        "logits": [
+            0.4409562051296234
+        ],
+        "phrases": [
+            "tumor"
+        ]
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Adrenal. Colon.",
+        "category": "word",
+        "image_path": "./grounding_dino_test/word/image/0009_0071.jpg",
+        "boxes": [
+            [
+                0.39,
+                0.41,
+                0.62,
+                0.66
+            ]
+        ],
+        "logits": [
+            0.3576619625091553
+        ],
+        "phrases": [
+            "colon"
+        ]
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Adrenal Gland. Duodenum.",
+        "category": "flare",
+        "image_path": "./grounding_dino_test/flare/image/0038_0026.jpg",
+        "boxes": [
+            [
+                0.28,
+                0.53,
+                0.37,
+                0.63
+            ],
+            [
+                0.66,
+                0.49,
+                0.76,
+                0.59
+            ],
+            [
+                0.47,
+                0.41,
+                0.59,
+                0.45
+            ]
+        ],
+        "logits": [
+            0.9180925488471985,
+            0.9377551674842834,
+            0.804493248462677
+        ],
+        "phrases": [
+            "kidney",
+            "kidney",
+            "duodenum"
+        ]
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/173_084_t2.jpg",
+        "boxes": [
+            [
+                0.41,
+                0.54,
+                0.76,
+                0.75
+            ]
+        ],
+        "logits": [
+            0.9518072009086609
+        ],
+        "phrases": [
+            "tumor"
+        ]
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Bladder. Pancreas.",
+        "category": "word",
+        "image_path": "./grounding_dino_test/word/image/0035_0063.jpg",
+        "boxes": [],
+        "logits": [],
+        "phrases": []
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Intestine. Head of femur.",
+        "category": "word",
+        "image_path": "./grounding_dino_test/word/image/0046_0105.jpg",
+        "boxes": [
+            [
+                0.25,
+                0.38,
+                0.64,
+                0.54
+            ]
+        ],
+        "logits": [
+            0.9607477784156799
+        ],
+        "phrases": [
+            "intestine"
+        ]
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/231_086_t1.jpg",
+        "boxes": [
+            [
+                0.44,
+                0.24,
+                0.81,
+                0.48
+            ]
+        ],
+        "logits": [
+            0.876541018486023
+        ],
+        "phrases": [
+            "tumor"
+        ]
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Esophagus. Rectum.",
+        "category": "word",
+        "image_path": "./grounding_dino_test/word/image/0068_0037.jpg",
+        "boxes": [],
+        "logits": [],
+        "phrases": []
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/244_079_flair.jpg",
+        "boxes": [
+            [
+                0.46,
+                0.24,
+                0.83,
+                0.47
+            ]
+        ],
+        "logits": [
+            0.9715580344200134
+        ],
+        "phrases": [
+            "tumor"
+        ]
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Intestine. Bladder.",
+        "category": "word",
+        "image_path": "./grounding_dino_test/word/image/0064_0036.jpg",
+        "boxes": [],
+        "logits": [],
+        "phrases": []
+    },
+    {
+        "prompt": "lung.",
+        "category": "xray",
+        "image_path": "./grounding_dino_test/xray/image/MCUCXR_0075_0.png",
+        "boxes": [
+            [
+                0.5,
+                0.13,
+                0.86,
+                0.69
+            ],
+            [
+                0.09,
+                0.14,
+                0.42,
+                0.69
+            ]
+        ],
+        "logits": [
+            0.7798212170600891,
+            0.8332769870758057
+        ],
+        "phrases": [
+            "lung",
+            "lung"
+        ]
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Bladder. Adrenal.",
+        "category": "word",
+        "image_path": "./grounding_dino_test/word/image/0042_0034.jpg",
+        "boxes": [],
+        "logits": [],
+        "phrases": []
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Pancreas. Bladder.",
+        "category": "word",
+        "image_path": "./grounding_dino_test/word/image/0073_0052.jpg",
+        "boxes": [
+            [
+                0.43,
+                0.44,
+                0.51,
+                0.48
+            ]
+        ],
+        "logits": [
+            0.3632034659385681
+        ],
+        "phrases": [
+            "bladder"
+        ]
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/337_082_t1ce.jpg",
+        "boxes": [
+            [
+                0.56,
+                0.28,
+                0.84,
+                0.5
+            ]
+        ],
+        "logits": [
+            0.9656247496604919
+        ],
+        "phrases": [
+            "tumor"
+        ]
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/333_083_flair.jpg",
+        "boxes": [
+            [
+                0.5,
+                0.5,
+                0.86,
+                0.75
+            ]
+        ],
+        "logits": [
+            0.9879966378211975
+        ],
+        "phrases": [
+            "tumor"
+        ]
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Adrenal Gland. Duodenum.",
+        "category": "flare",
+        "image_path": "./grounding_dino_test/flare/image/0024_0003.jpg",
+        "boxes": [],
+        "logits": [],
+        "phrases": []
+    },
+    {
+        "prompt": "Kidney. Stomach. Liver. Spleen.. Colon. Esophagus.",
+        "category": "word",
+        "image_path": "./grounding_dino_test/word/image/0026_0076.jpg",
+        "boxes": [],
+        "logits": [],
+        "phrases": []
+    },
+    {
+        "prompt": "tumor.",
+        "category": "mri",
+        "image_path": "./grounding_dino_test/mri/image/004_079_t2.jpg",
+        "boxes": [
+            [
+                0.53,
+                0.53,
+                0.83,
+                0.74
+            ]
+        ],
+        "logits": [
+            0.9858782291412354
+        ],
+        "phrases": [
+            "tumor"
+        ]
+    },
+    {
+        "prompt": "cell.",
+        "category": "cell",
+        "image_path": "./grounding_dino_test/cell/image/cell_00063.bmp",
+        "boxes": [
+            [
+                0.02,
+                0.72,
+                0.19,
+                0.91
+            ],
+            [
+                0.13,
+                0.11,
+                0.23,
+                0.23
+            ],
+            [
+                0.66,
+                0.31,
+                0.81,
+                0.53
+            ],
+            [
+                0.53,
+                0.35,
+                0.67,
+                0.54
+            ],
+            [
+                0.61,
+                0.84,
+                0.68,
+                0.93
+            ],
+            [
+                0.23,
+                0.31,
+                0.31,
+                0.44
+            ],
+            [
+                0.61,
+                0.07,
+                0.74,
+                0.28
+            ],
+            [
+                0.09,
+                0.35,
+                0.25,
+                0.59
+            ],
+            [
+                0.01,
+                0.12,
+                0.1,
+                0.21
+            ],
+            [
+                0.8,
+                0.43,
+                0.9,
+                0.55
+            ],
+            [
+                0.31,
+                0.3,
+                0.44,
+                0.48
+            ],
+            [
+                0.5,
+                0.55,
+                0.62,
+                0.69
+            ],
+            [
+                0.72,
+                0.17,
+                0.86,
+                0.34
+            ],
+            [
+                0.95,
+                0.71,
+                1.0,
+                0.81
+            ],
+            [
+                0.82,
+                0.25,
+                0.98,
+                0.47
+            ],
+            [
+                -0.0,
+                0.87,
+                0.05,
+                0.99
+            ],
+            [
+                0.24,
+                0.44,
+                0.37,
+                0.61
+            ],
+            [
+                0.84,
+                0.55,
+                0.96,
+                0.66
+            ],
+            [
+                0.16,
+                0.93,
+                0.29,
+                1.0
+            ],
+            [
+                0.06,
+                0.91,
+                0.17,
+                1.0
+            ],
+            [
+                0.56,
+                0.91,
+                0.66,
+                1.0
+            ],
+            [
+                0.51,
+                0.7,
+                0.58,
+                0.8
+            ],
+            [
+                0.92,
+                0.19,
+                1.0,
+                0.31
+            ],
+            [
+                -0.0,
+                0.13,
+                0.02,
+                0.24
+            ],
+            [
+                0.4,
+                0.79,
+                0.56,
+                0.99
+            ],
+            [
+                0.98,
+                0.37,
+                1.0,
+                0.48
+            ]
+        ],
+        "logits": [
+            0.659145712852478,
+            0.7162695527076721,
+            0.6693190932273865,
+            0.6729971170425415,
+            0.6229643821716309,
+            0.6462014317512512,
+            0.6386856436729431,
+            0.6344663500785828,
+            0.6404179334640503,
+            0.6155436635017395,
+            0.5976722836494446,
+            0.4914112389087677,
+            0.5688197016716003,
+            0.5577982068061829,
+            0.5591976046562195,
+            0.47885486483573914,
+            0.42504921555519104,
+            0.5600264072418213,
+            0.43756720423698425,
+            0.4607316851615906,
+            0.426929235458374,
+            0.4909898042678833,
+            0.49534815549850464,
+            0.41902390122413635,
+            0.5945010781288147,
+            0.395547479391098
+        ],
+        "phrases": [
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell",
+            "cell"
+        ]
+    }
+]
