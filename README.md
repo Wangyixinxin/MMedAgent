@@ -227,6 +227,7 @@ After downloading and processing the necessary datasets, please refer to [combin
    - ChatCAD_R
     ```
     pip install -r src/ChatCAD_R/requirements.txt
+    pip install httpx==0.24.0 supervision==0.10.0 # make sure version not overwritten
     ```
    - Replace src/MedSAM/segment_anything/build_sam.py by [this build_sam.py](src/build_sam.py) which uses vit_b version.
 
