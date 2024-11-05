@@ -418,7 +418,7 @@ if __name__ == "__main__":
         "--model-path", type=str, default="src/groundingdinomed-checkpoint0005_slim.pth"
     )
     parser.add_argument(
-        "--model-config", type=str, default="src/groundingdino/groundingdino/config/GroundingDINO_SwinT_OGC.py"
+        "--model-config", type=str, default="src/GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py"
     )
     parser.add_argument(
         "--sam-path", type=str, default="src/medsam_vit_b.pth"
