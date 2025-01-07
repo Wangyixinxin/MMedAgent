@@ -29,7 +29,7 @@ def get_answer(api_key, question_id: int, question: str, image_path, max_tokens:
                 "Authorization": f"Bearer {api_key}"
             }
             payload = {
-                "model": "gpt-4o",
+                "model": "gpt-4o-2024-05-13",
                 "messages": [
                     {
                         "role": "system",
@@ -60,7 +60,7 @@ def get_answer(api_key, question_id: int, question: str, image_path, max_tokens:
                 "Authorization": f"Bearer {api_key}"
             }
             payload = {
-                "model": "gpt-4o",
+                "model": "gpt-4o-2024-05-13",
                 "messages": [
                     {
                         "role": "system",
@@ -102,7 +102,7 @@ if __name__ == '__main__':
     questions = get_chunk(questions, 1, 0)
 
     answers = []
-    images_path_f = '/home/jack/Projects/yixin-llm/eval_images'
+    images_path_f = 'eval_images'
 
     for item in tqdm(questions):
         if "gpt4_answer" in item and item["gpt4_answer"] != "":
