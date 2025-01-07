@@ -161,7 +161,7 @@ python ./llava/eval/eval_multimodal_chat_gpt_score.py \
     --input_path ./eval_data_json/output_gpt4o_eval_example.jsonl
     --output_path ./eval_data_json/compare_gpt4o_medagent_reivew.jsonl
 ```
-or use [`eval_gpt4.sh`](https://github.com/Wangyixinxin/MMedAgent/blob/main/eval_gpt4.sh)
+or use [`eval_gpt4o.sh`](https://github.com/Wangyixinxin/MMedAgent/blob/main/eval_gpt4.sh)
 ## Data Download
 ### Instruction-tuning Dataset
 We build the first open-source instruction tuning dataset for multi-modal medical agents.
