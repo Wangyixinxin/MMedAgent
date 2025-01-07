@@ -156,7 +156,7 @@ or run [`eval_gpt4o.sh`](https://github.com/Wangyixinxin/MMedAgent/blob/main/eva
 ### GPT-4 evaluation
 All the outputs will be assessed by GPT-4 and rated on a scale from 1 to 10 based on their helpfulness, relevance, accuracy, and level of details. Check our paper for detailed evaluation.
 ```
-python ./llava/eval/eval_multimodal_chat_gpt_score.py \
+python ./llava/eval/eval_gpt4.py \
     --question_input_path ./eval_data_json/eval_example.jsonl \
     --input_path ./eval_data_json/output_gpt4o_eval_example.jsonl
     --output_path ./eval_data_json/compare_gpt4o_medagent_reivew.jsonl
