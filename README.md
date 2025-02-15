@@ -194,7 +194,7 @@ python data_processing/dataset_loading.py
 [PMC article 60K-IM](https://hanoverprod.z21.web.core.windows.net/med_llava/instruct/llava_med_instruct_60k_inline_mention.json)
 
 #### Compile dataset
-After downloading and processing the necessary datasets, please refer to [combine.ipynb](data_processing/combine.ipynb) for data ID compiling, ensuring the image id to be aligned with our instruction-tuning dataset.
+After downloading and processing the necessary datasets, please refer to [combine.ipynb](data_processing/combine.ipynb) for data ID compiling, ensuring the image file name to be aligned with our instruction-tuning dataset.
 
 ## Build Web UI and Server
 1. Download ChatCAD Dependencies
